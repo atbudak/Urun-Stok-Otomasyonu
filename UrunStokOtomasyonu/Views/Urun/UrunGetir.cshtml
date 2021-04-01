@@ -1,0 +1,42 @@
+﻿@model UrunStokOtomasyonu.Models.EntityFramework.TBLURUN
+@{
+    ViewBag.Title = "UrunGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="mw-500 text-center bg-transparent">
+    <h1 class="sketchy text-center">Ürün Güncelle</h1>
+</div>
+<div class="col-lg-12">
+    <div class="col-lg-3 pull-right float-right mt-5 mb-3">
+        <a href="/Urun/UrunEkle" class="btn btn-success pull-right" style="margin-bottom:15px">Yeni Ürün Ekle</a>
+        <a href="/Urun/UrunListesi" class="btn btn-info pull-right mr-3" style="margin-bottom:15px">Ürünler</a>
+    </div>
+</div>
+@using (Html.BeginForm("UrunGuncelle", "Urun", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="d-flex col-lg-10 m-auto">
+        @Html.HiddenFor(x => x.ID)
+        <div class="col-lg-6">
+            @Html.Label("Ürün Adı")
+            @Html.TextBoxFor(x => x.AD, new { @class = "form-control mt-1 mb-3", placeholder = "Ürün adını giriniz." })
+            @Html.ValidationMessageFor(x => x.AD, "", new { @style = "color:red;opacity:.7" })
+            <br />
+            @Html.Label("Ürün Stoğu(kg)")
+            @Html.TextBoxFor(x => x.STOK, new { @class = "form-control mt-1 mb-3", Type = "number" ,max="999999"})
+            @Html.ValidationMessageFor(x => x.STOK, "", new { @style = "color:red;opacity:.7" })
+        </div>
+        <div class="col-lg-6">
+            @Html.Label("Ürün Fiyatı")
+            @Html.TextBoxFor(x => x.FIYAT, new { @class = "form-control mt-1 mb-3", placeholder = "Ürün fiyatı giriniz." })
+            @Html.ValidationMessageFor(x => x.FIYAT, "", new { @style = "color:red;opacity:.7" })
+        </div>
+    </div>
+    <div class="col-lg-10 m-auto" style="max-width:81.3%">
+        @Html.Label("Detay")
+        @Html.TextAreaFor(x => x.DETAY, new { @class = "form-control mt-1 mb-3", placeholder = "Detay giriniz." })
+        <button class="btn btn-success mt-2 pl-4 pr-4 float-lg-right">Ekle</button>
+    </div>
+
+}

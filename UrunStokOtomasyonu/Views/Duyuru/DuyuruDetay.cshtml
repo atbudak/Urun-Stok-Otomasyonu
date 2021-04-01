@@ -1,0 +1,33 @@
+﻿@model UrunStokOtomasyonu.Models.EntityFramework.TBLDUYURU
+@{
+    ViewBag.Title = "DuyuruDetay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="mw-500 text-center bg-transparent mb-4">
+    <h1 class="sketchy text-center">Duyuru Detay</h1>
+</div>
+
+@using (Html.BeginForm("DuyuruGuncelle", "Duyuru", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="d-flex">
+        @Html.HiddenFor(x => x.ID)
+        <div class="col-md-6">
+            @Html.Label("Konu")
+            @Html.TextBoxFor(x => x.KONU, new { @class = "form-control mt-1 mb-3" })
+            @Html.ValidationMessageFor(x => x.KONU, "", new { @style = "color:red;opacity:.7" })
+        </div><div class="col-md-6">
+            @Html.Label("Tarihi")
+            @Html.TextBoxFor(x => x.TARIH, "{0:dd/MM/yyyy}", new { @class = "form-control mt-1 mb-3" })
+            @Html.ValidationMessageFor(x => x.TARIH, "", new { @style = "color:red;opacity:.7" })
+        </div>
+    </div>
+    <div class="col-md-12">
+        @Html.Label("Mesaj")
+        @Html.TextAreaFor(x => x.ICERIK, new { @class = "form-control mt-1 mb-3" })
+        @Html.ValidationMessageFor(x => x.ICERIK, "", new { @style = "color:red;opacity:.7" })
+    </div>
+
+    <button class="btn btn-success">Güncelle</button>
+}

@@ -1,0 +1,67 @@
+﻿@model UrunStokOtomasyonu.Models.EntityFramework.TBLSATISHAREKET
+@{
+    ViewBag.Title = "SatisGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="mw-500 text-center bg-transparent">
+    <h1 class="sketchy text-center">Satış Güncelle</h1>
+</div>
+<div class="col-lg-12">
+    <div class="col-lg-3 pull-right float-right mt-5 mb-3">
+        <a href="/Satis/SatisEkle" class="btn btn-success pull-right" style="margin-bottom:15px">Yeni Satış Ekle</a>
+        <a href="/Satis/SatisListesi" class="btn btn-info pull-right mr-3" style="margin-bottom:15px">Bekleyen Satışlar</a>
+    </div>
+</div>
+@using (Html.BeginForm("SatisGuncelle", "Satis", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="d-flex col-lg-10 m-auto">
+        @Html.HiddenFor(x => x.ID)
+        <div class="col-lg-6">
+            <label style="margin-bottom:10px;">Ürün</label>
+            @Html.DropDownListFor(k => k.TBLURUN.ID, (List<SelectListItem>)ViewBag.urn1, new { @class = "form-control mt-1 mb-3" })
+
+            <label style="margin-bottom:10px;">Sipariş Tarihi</label>
+            @Html.TextBoxFor(x => x.SIPARISTARIHI, "{0:dd.MM.yyyy }", new { @class = "form-control mt-1 mb-3", @readonly = "" })
+            @Html.ValidationMessageFor(x => x.SIPARISTARIHI, "", new { @style = "color:red;opacity:.7" })
+
+            <label style="margin-bottom:10px;">Ürün Miktari (kg)</label>
+            @Html.TextBoxFor(x => x.URUNMIKTARI, new { @class = "form-control mt-1 mb-3" })
+            @Html.ValidationMessageFor(x => x.URUNMIKTARI, "", new { @style = "color:red;opacity:.7" })
+
+            <label style="margin-bottom:10px;">Satış Aşaması</label>
+            <div class="form-group">
+                <select class="form-control" id="category2" name="ACTION" required="">
+                    <option value="0">Sipariş Alındı</option>
+                    <option value="1">Sipariş Tükendi</option>
+                    <option value="2">T.E. Ücret Bekleniyor</option>
+                    <option value="3">Ü.A. Teslim Bekleniyor</option>
+                    <option value="4">Tamamlandı</option>
+                    <option value="5">İptal Edildi</option>
+                    <option value="6">Üyeye Tedarik Edildi</option>
+                </select>
+                <span></span>
+            </div>
+            @Html.ValidationMessageFor(x => x.ACTION, "", new { @style = "color:red;opacity:.7" })
+        </div>
+        <div class="col-lg-6">
+            <label style="margin-bottom:10px;">Üye</label>
+            @Html.DropDownListFor(k => k.TBLUYE.ID, (List<SelectListItem>)ViewBag.uye1, new { @class = "form-control mt-1 mb-3" })
+
+            <label style="margin-bottom:10px;">Teslim Tarihi</label>
+            @Html.TextBoxFor(x => x.TESLIMTARIHI, new { @class = "form-control mt-1 mb-3", type = "date" })
+
+            <label style="margin-bottom:10px;">Müşteri</label>
+            @Html.TextBoxFor(x => x.MUSTERI, new { @class = "form-control mt-1 mb-3" })
+            @Html.ValidationMessageFor(x => x.MUSTERI, "", new { @style = "color:red;opacity:.7" })
+        </div>
+    </div>
+    <div class="col-lg-10 m-auto" style="max-width:81.3%">
+        @Html.Label("Müşteri Detay")
+        @Html.TextAreaFor(x => x.MUSTERIDETAY, new { @class = "form-control mt-1 mb-3", placeholder = "Detay giriniz." })
+        <button class="btn btn-success mt-2 pl-4 pr-4 float-lg-right">Güncelle</button>
+    </div>
+
+}
+

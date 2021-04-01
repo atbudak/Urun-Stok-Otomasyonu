@@ -1,0 +1,122 @@
+﻿<link href="~/Content/PagedList.css" rel="stylesheet" />
+
+<!doctype html>
+<html lang="tr">
+<head>
+    <title>Admin Paneli</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/sidebar-01/css/style.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar">
+            <div class="p-4 pt-5">
+                <a href="/Home/Index" class="img logo rounded-circle mb-5" style="background-image: url(/sidebar-01/images/logo.jpg);"></a>
+                <ul class="list-unstyled components mb-5">
+                    <li>
+                        <a href="/Home/Index">Anasayfa</a>
+                    </li>
+                    <li>
+                        <a href="/Urun/UrunListesi">Ürün</a>
+                    </li>
+                    <li>
+                        <a href="/Uye/UyeListesi">Üye</a>
+                    </li>
+                    <li>
+                        <a href="/Satis/SatisListesi">Satışlar</a>
+                    </li>
+                    <li>
+                        <a href="/Satis/BitenUrunListesi">Siparişler</a>
+                    </li>
+                    <li>
+                        <a href="/Duyuru/DuyuruListesi">Duyurular</a>
+                    </li>
+                    <li>
+                        <a href="/Login/UyeLogin" target="_blank">Üye Paneli</a>
+                    </li>
+                    <li>
+                        <a href="#popup1">Yardım</a>
+                    </li>
+                    <li>
+                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Ayarlar</a>
+                        <ul class="collapse list-unstyled" id="pageSubmenu">
+                            <li>
+                                <a href="/Home/AyarGuncelle">Bilgilerim</a>
+                            </li>
+                            <li>
+                                <a href="/Login/AdminLogout">Çıkış</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="footer invisible">
+                    <p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+                </div>
+
+            </div>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content" class="p-4 p-md-5">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                        <i class="fa fa-bars"></i>
+                        <span class="sr-only">Menü</span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/Home/Index">Anasayfa</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Satis/Index">Satışlar</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Login/AdminLogout">Çıkış</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            @RenderBody()
+        </div>
+    </div>
+    <script src="~/sidebar-01/js/jquery.min.js"></script>
+    <script src="~/sidebar-01/js/popper.js"></script>
+    <script src="~/sidebar-01/js/bootstrap.min.js"></script>
+    <script src="~/sidebar-01/js/popper.js"></script>
+    <script src="~/sidebar-01/js/main.js"></script>
+
+
+
+</body>
+</html>
+
+<div id="popup1" class="overlay">
+    <div class="popup">
+        <h2>Bilgilendirme Kutusu</h2>
+        <a class="close" href="">&times;</a>
+        <div class="content">
+            Thank to pop me out of that button, but now i'm done so you can close this window.
+        </div>
+    </div>
+</div>
+

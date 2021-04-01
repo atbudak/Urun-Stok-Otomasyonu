@@ -1,0 +1,43 @@
+﻿@model UrunStokOtomasyonu.Models.EntityFramework.TBLUYE
+@{
+    ViewBag.Title = "UyeEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="mw-500 text-center bg-transparent">
+    <h1 class="sketchy text-center">Üye Ekle</h1>
+</div>
+<div class="col-lg-12">
+    <div class="col-lg-3 pull-right float-right mt-5 mb-3">
+        <a href="/Uye/UyeListesi" class="btn btn-info pull-right mr-3" style="margin-bottom:15px">Üyeler</a>
+    </div>
+</div>
+
+<form method="post">
+    @Html.AntiForgeryToken()
+
+    <div class="d-flex col-lg-10 m-auto">
+        @Html.HiddenFor(x => x.ID)
+        <div class="col-lg-6">
+            @Html.Label("Üye Adı")
+            @Html.TextBoxFor(x => x.AD, new { @class = "form-control mt-1 mb-3", placeholder = "Adı giriniz." })
+            @Html.ValidationMessageFor(x => x.AD, "", new { @style = "color:red;opacity:.7" }) <br />
+            @Html.Label("Kullanıcı Adı")
+            @Html.TextBoxFor(x => x.KULLANICIADI, new { @class = "form-control mt-1 mb-3", placeholder = "Kullanıcı adı giriniz." })
+            @Html.ValidationMessageFor(x => x.KULLANICIADI, "", new { @style = "color:red;opacity:.7" }) 
+        </div>
+        <div class="col-lg-6">
+            @Html.Label("Üye Soyadı")
+            @Html.TextBoxFor(x => x.SOYAD, new { @class = "form-control mt-1 mb-3", placeholder = "Soyadı giriniz." })
+            @Html.ValidationMessageFor(x => x.SOYAD, "", new { @style = "color:red;opacity:.7" }) <br />
+            @Html.Label("Şifre")
+            @Html.TextBoxFor(x => x.SIFRE, new { @class = "form-control mt-1 mb-3", Type = "password", placeholder = "Şifreyi giriniz.", title = "Şifreyi görüntülemek için tıklayınız.", onclick = "return type='text'" })
+            @Html.ValidationMessageFor(x => x.SIFRE, "", new { @style = "color:red;opacity:.7" })
+        </div>
+
+    </div>
+    <div class="col-lg-10 mt-5">
+        <button class="btn btn-success col-lg-1 float-right">Üye Ekle</button>
+    </div>
+
+</form>
