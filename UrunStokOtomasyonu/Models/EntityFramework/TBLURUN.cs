@@ -20,12 +20,11 @@ namespace UrunStokOtomasyonu.Models.EntityFramework
         {
             this.TBLSATISHAREKET = new HashSet<TBLSATISHAREKET>();
         }
-
+    
         public int? ID { get; set; }
 
         [Required(ErrorMessage = "Ad alaný zorunludur.")]
         [StringLength(maximumLength: 50, ErrorMessage = "Adýnýzýn uzunluðunu kontrol ediniz.", MinimumLength = 2)]
-        [RegularExpression(@"^(([A-za-z]+[\s]{1}[A-za-z]+)|([A-Za-z]+))$", ErrorMessage = "Lütfen yanlýzca büyük-küçük harf giriniz.")]
         public string AD { get; set; }
 
         [Required(ErrorMessage = "Fiyat alaný zorunludur.")]
@@ -33,8 +32,9 @@ namespace UrunStokOtomasyonu.Models.EntityFramework
         public string DETAY { get; set; }
         public Nullable<bool> DURUM { get; set; }
 
+
         [Required(ErrorMessage = "Stok alaný zorunludur.")]
-        [Range(0,99999,ErrorMessage = "Stok deðeri negatif deðer girilemez.")]
+        [Range(0, 99999, ErrorMessage = "Stok deðeri negatif deðer girilemez.")]
         public Nullable<double> STOK { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

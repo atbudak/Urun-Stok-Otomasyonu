@@ -16,7 +16,7 @@ namespace UrunStokOtomasyonu
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "UyePanel", action = "Anasayfa", id = UrlParameter.Optional }
             );
         }
     }

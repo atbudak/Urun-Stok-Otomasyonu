@@ -136,6 +136,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\DuyuruController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -161,9 +162,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\EntityFramework\TBLADMIN.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\EntityFramework\TBLDUYURU.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -177,6 +175,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\UyeRoleProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\AdminKartlar\component.css" />
@@ -234,8 +233,13 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\error-404\css\style.css" />
+    <Content Include="Content\error-404\img\bg.jpg" />
+    <Content Include="Content\error-404\index.html" />
+    <Content Include="Content\error-404\readme.txt" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\sayfamb.css" />
     <Content Include="Content\UyeLayout\bootstrap.bundle.min.js" />
     <Content Include="Content\UyeLayout\jquery.min.js" />
     <Content Include="Content\UyeLayout\simple-sidebar.css" />
@@ -284,6 +288,7 @@
     <Content Include="Content\UyeLogin\vendor\select2\select2.min.css" />
     <Content Include="Content\UyeLogin\vendor\select2\select2.min.js" />
     <Content Include="favicon.ico" />
+    <Content Include="general.html" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Models\EntityFramework\Model1.Context.tt">
@@ -296,6 +301,31 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="sidebar-01\css\popup.css" />
+    <Content Include="webpanel\default-profile.jpg" />
+    <Content Include="webpanel\Profil\adminlte.css" />
+    <Content Include="webpanel\Profil\adminlte.min.js" />
+    <Content Include="webpanel\Profil\all.min.css" />
+    <Content Include="webpanel\Profil\bootstrap.bundle.min.js" />
+    <Content Include="webpanel\Profil\demo.js" />
+    <Content Include="webpanel\Profil\icheck-bootstrap.min.css" />
+    <Content Include="webpanel\Profil\jquery.min.js" />
+    <Content Include="webpanel\Profil\summernote-bs4.css" />
+    <Content Include="webpanel\Profil\summernote-bs4.min.js" />
+    <Content Include="webpanel\vendor\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="webpanel\vendor\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="webpanel\vendor\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="webpanel\vendor\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="webpanel\vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="webpanel\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="webpanel\vendor\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="webpanel\vendor\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="webpanel\vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="webpanel\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="webpanel\vendor\jquery\jquery.js" />
+    <Content Include="webpanel\vendor\jquery\jquery.min.js" />
+    <Content Include="webpanel\vendor\jquery\jquery.slim.js" />
+    <Content Include="webpanel\vendor\jquery\jquery.slim.min.js" />
     <EntityDeploy Include="Models\EntityFramework\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -695,13 +725,38 @@
     <Content Include="Views\Login\AdminLogin.cshtml" />
     <Content Include="Views\Shared\_UyePanelLayout.cshtml" />
     <Content Include="Views\Login\UyeLogin.cshtml" />
-    <Content Include="Views\Home\AyarGoruntule.cshtml" />
-    <Content Include="Views\Home\AyarGuncelle.cshtml" />
+    <Content Include="Views\UyePanel\Anasayfa.cshtml" />
+    <Content Include="webpanel\vendor\bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="webpanel\vendor\bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="webpanel\vendor\bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="webpanel\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="webpanel\vendor\bootstrap\css\bootstrap.css.map" />
+    <Content Include="webpanel\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="webpanel\vendor\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="webpanel\vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="webpanel\vendor\bootstrap\js\bootstrap.js.map" />
+    <Content Include="webpanel\vendor\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="webpanel\vendor\jquery\jquery.min.map" />
+    <Content Include="webpanel\vendor\jquery\jquery.slim.min.map" />
+    <Content Include="Views\UyePanel\Profil.cshtml" />
+    <Content Include="Views\UyePanel\Duyurular.cshtml" />
+    <Content Include="Views\UyePanel\DuyuruDetay.cshtml" />
+    <Content Include="Views\UyePanel\SatisEkle.cshtml" />
+    <Content Include="Views\UyePanel\SatisGetir.cshtml" />
+    <Content Include="Views\UyePanel\SatisListesi.cshtml" />
+    <Content Include="Views\UyePanel\TamamlananSatislar.cshtml" />
+    <Content Include="Views\UyePanel\IstenenUrunler.cshtml" />
+    <Content Include="Views\UyePanel\GelenUrunler.cshtml" />
+    <Content Include="Views\Home\Page404.cshtml" />
+    <Content Include="Views\Home\Page403.cshtml" />
+    <Content Include="Views\Admin\AdminListesi.cshtml" />
+    <Content Include="Views\Admin\PasifAdminListesi.cshtml" />
+    <Content Include="Views\Admin\AdminEkle.cshtml" />
+    <Content Include="Views\Admin\AdminGetir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\Classes\" />
-    <Folder Include="Views\UyePanel\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

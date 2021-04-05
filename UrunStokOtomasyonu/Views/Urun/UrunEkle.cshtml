@@ -15,26 +15,27 @@
 @using (Html.BeginForm("UrunEkle", "Urun", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    <div class="d-flex col-lg-10 m-auto mt-lg-3">
-        @Html.HiddenFor(x => x.ID)
-        <div class="col-md-6">
-            @Html.Label("Ürün Adı")
-            @Html.TextBoxFor(x => x.AD, new { @class = "form-control mt-1 mb-3", placeholder = "Ürün adını giriniz." })
-            @Html.ValidationMessageFor(x => x.AD, "", new { @style = "color:red;opacity:.7" }) <br />
-            @Html.Label("Ürün Stoğu(kg)")
-            @Html.TextBoxFor(x => x.STOK, new { @class = "form-control mt-1 mb-3", max="999999", Type = "number" })
-            @Html.ValidationMessageFor(x => x.STOK, "", new { @style = "color:red;opacity:.7" })
-        </div>
-        <div class="col-lg-6">
-            @Html.Label("Ürün Fiyatı")
-            @Html.TextBoxFor(x => x.FIYAT, new { @class = "form-control mt-1 mb-3", placeholder = "Ürün fiyatı giriniz." })
-            @Html.ValidationMessageFor(x => x.FIYAT, "", new { @style = "color:red;opacity:.7" })
-        </div>
+<div class="flex_container" style="max-width:1300px">
+    @Html.HiddenFor(x => x.ID)
+    <div class="flex_col_1">
+        @Html.Label("Ürün Adı")
+        @Html.TextBoxFor(x => x.AD, new { @class = "form-control mt-1 mb-3", placeholder = "Ürün adını giriniz." })
+        @Html.ValidationMessageFor(x => x.AD, "", new { @style = "color:red;opacity:.7" })
+    </div><div class="flex_col_1">
+        @Html.Label("Ürün Stoğu(kg)")
+        @Html.TextBoxFor(x => x.STOK, new { @class = "form-control mt-1 mb-3", max = "999999", Type = "number" })
+        @Html.ValidationMessageFor(x => x.STOK, "", new { @style = "color:red;opacity:.7" })
     </div>
-    <div class="col-md-10 m-auto" style="max-width:81.3%">
+    <div class="flex_col_1">
+        @Html.Label("Ürün Fiyatı")
+        @Html.TextBoxFor(x => x.FIYAT, new { @class = "form-control mt-1 mb-3", placeholder = "Ürün fiyatı giriniz." })
+        @Html.ValidationMessageFor(x => x.FIYAT, "", new { @style = "color:red;opacity:.7" })
+    </div>
+    <div class="flex_col_0">
         @Html.Label("Detay")
         @Html.TextAreaFor(x => x.DETAY, new { @class = "form-control mt-1 mb-3", placeholder = "Detay giriniz." })
         <button class="btn btn-success mt-2 pl-4 pr-4 float-lg-right">Ekle</button>
     </div>
+</div>
 
 }

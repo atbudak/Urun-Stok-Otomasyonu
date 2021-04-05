@@ -11,7 +11,6 @@
         <EntityTypeShape EntityType="DBUrunStokModel.TBLUYE" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
         <AssociationConnector Association="DBUrunStokModel.FK_TBLSATISHAREKET_TBLURUN" ManuallyRouted="false" />
         <AssociationConnector Association="DBUrunStokModel.FK_TBLSATISHAREKET_TBLUYE" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="DBUrunStokModel.TBLADMIN" Width="1.5" PointX="5.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -6,12 +6,16 @@ using System.Web.Mvc;
 using UrunStokOtomasyonu.Models.EntityFramework;
 using PagedList;
 using PagedList.Mvc;
+using System.Data.Entity.Validation;
+using System.Globalization;
 
 namespace UrunStokOtomasyonu.Controllers
 {
+    [Authorize(Roles = "A")]
     public class SatisController : Controller
     {
         DBUrunStokEntities db = new DBUrunStokEntities();
+
         // GET: Satis
         public ActionResult SatisListesi(string search, int page = 1)
         {
@@ -44,11 +48,11 @@ namespace UrunStokOtomasyonu.Controllers
         public ActionResult SatisEkle()
         {
             List<SelectListItem> u1 = (from x in db.TBLURUN.Where(x => x.DURUM == true).ToList()
-                                         select new SelectListItem { Text = x.AD, Value = x.ID.ToString() }).ToList();
+                                       select new SelectListItem { Text = x.AD, Value = x.ID.ToString() }).ToList();
             ViewBag.urn1 = u1;
 
             List<SelectListItem> u2 = (from x in db.TBLUYE.Where(x => x.DURUM == true).ToList()
-                                        select new SelectListItem { Text = x.AD + " " + x.SOYAD, Value = x.ID.ToString() }).ToList();
+                                       select new SelectListItem { Text = x.AD + " " + x.SOYAD, Value = x.ID.ToString() }).ToList();
             ViewBag.uye1 = u2;
             TBLSATISHAREKET k = new TBLSATISHAREKET();
             return View(k);
@@ -57,10 +61,6 @@ namespace UrunStokOtomasyonu.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SatisEkle(TBLSATISHAREKET k)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return View();
-            //}
             var urn = db.TBLURUN.Where(x => x.ID == k.TBLURUN.ID).FirstOrDefault();
             var uye = db.TBLUYE.Where(x => x.ID == k.TBLUYE.ID).FirstOrDefault();
             if (k.ACTION == "4" || k.ACTION == "5") { k.DURUM = false; } else { k.DURUM = true; }
@@ -69,13 +69,13 @@ namespace UrunStokOtomasyonu.Controllers
             double? sayi1 = urn.FIYAT;
             double? sayi2 = k.URUNMIKTARI;
             k.ISLEMTUTARI = sayi1 * sayi2;
-                       
+
             double? stok = urn.STOK;
             double? urunmiktari = k.URUNMIKTARI;
             double? kalanstok = stok - urunmiktari;
             if (stok > 0)
             {
-                if (kalanstok < 0 || kalanstok == 0)
+                if (kalanstok < 0)
                 {
                     if (k.ACTION == "1")
                     {
@@ -83,10 +83,11 @@ namespace UrunStokOtomasyonu.Controllers
                         db.SaveChanges();
                         return RedirectToAction("SatisListesi");
                     }
+
                     ViewBag.err1 = "Stok bulunmadığı durumda Sipariş Tükendi seçeneğini seçmelisiniz.";
                     return RedirectToAction("SatisEkle");
                 }
-                else if (kalanstok > 0)
+                else
                 {
                     db.TBLSATISHAREKET.Add(k);
                     db.SaveChanges();
@@ -105,9 +106,6 @@ namespace UrunStokOtomasyonu.Controllers
                 return RedirectToAction("SatisEkle");
             }
 
-            db.TBLSATISHAREKET.Add(k);
-            db.SaveChanges();
-            return RedirectToAction("SatisListesi");
         }
 
         public ActionResult SatisGetir(int id)
@@ -125,55 +123,75 @@ namespace UrunStokOtomasyonu.Controllers
         }
         [ValidateAntiForgeryToken]
         public ActionResult SatisGuncelle(TBLSATISHAREKET t)
-        {   
+        {
             var sts = db.TBLSATISHAREKET.Find(t.ID);
-            //if (!ModelState.IsValid)
-            //{
-            //    return View("SatisGetir");
-            //}
+
             var urn = db.TBLURUN.Where(x => x.ID == t.TBLURUN.ID).FirstOrDefault();
             var uye = db.TBLUYE.Where(x => x.ID == t.TBLUYE.ID).FirstOrDefault();
 
-           
+
 
             double? stok = urn.STOK;
             double? urunmiktari = t.URUNMIKTARI;
             double? kalanstok = stok - urunmiktari;
 
-            if (t.ACTION == "6")
+            try
             {
-                if (sts.ACTION == "1")
+                if (stok > 0)
                 {
-                    if (kalanstok == 0 || kalanstok < 0)
+                    if (kalanstok < 0)
                     {
-
-                        ViewBag.err1 = "Stok bulunmamaktadır.";
-                        return View();
+                        if (t.ACTION == "1")
+                        {
+                            sts.URUNMIKTARI = t.URUNMIKTARI;
+                            ViewBag.err1 = "Stok bulunmamaktadır.";
+                        }
                     }
-                    urn.STOK = kalanstok;
+                    else
+                    {
+                        if (t.ACTION == "6" && sts.ACTION == "1")
+                        {
+                            urn.STOK = kalanstok;
+
+                        }
+                        sts.URUNMIKTARI = t.URUNMIKTARI;
+                    }
                 }
-                t.ACTION = sts.ACTION;
+                else
+                {
+                    if (t.ACTION == "1")
+                    {
+                        sts.URUNMIKTARI = t.URUNMIKTARI;
+                    }
+                }
+
+                sts.TESLIMTARIHI = t.TESLIMTARIHI;
+                sts.MUSTERI = t.MUSTERI;
+                sts.MUSTERIDETAY = t.MUSTERIDETAY;
+
+                if (t.ACTION == "4" || t.ACTION == "5")
+                { sts.DURUM = false; }
+                sts.ACTION = t.ACTION;
+
+                sts.URUN = urn.ID;
+                sts.UYE = uye.ID;
+
+                double? sayi1 = urn.FIYAT;
+                double? sayi2 = t.URUNMIKTARI;
+                sts.ISLEMTUTARI = sayi1 * sayi2;
+
+
+                db.SaveChanges();
+                return RedirectToAction("SatisListesi");
             }
-
-            sts.TESLIMTARIHI = t.TESLIMTARIHI;
-            sts.URUNMIKTARI = t.URUNMIKTARI;
-            sts.MUSTERI = t.MUSTERI;
-            sts.MUSTERIDETAY = t.MUSTERIDETAY;
-
-            if (t.ACTION == "4" || t.ACTION == "5")
-            { sts.DURUM = false; }
-            sts.ACTION = t.ACTION;
-
-
-            sts.URUN = urn.ID;
-            sts.UYE = uye.ID;
-
-            double? sayi1 = urn.FIYAT;
-            double? sayi2 = t.URUNMIKTARI;
-            sts.ISLEMTUTARI = sayi1 * sayi2;
-
-            db.SaveChanges();
-            return RedirectToAction("SatisListesi");
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    
+                }
+                throw;
+            }
         }
     }
 }

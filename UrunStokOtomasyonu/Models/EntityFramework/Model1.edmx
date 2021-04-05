@@ -5,17 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DBUrunStokModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="TBLADMIN">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AD" Type="varchar" MaxLength="50" />
-          <Property Name="SOYAD" Type="varchar" MaxLength="50" />
-          <Property Name="KULLANICIADI" Type="varchar" MaxLength="20" />
-          <Property Name="SIFRE" Type="varchar" MaxLength="20" />
-          <Property Name="DURUM" Type="bit" />
-        </EntityType>
         <EntityType Name="TBLDUYURU">
           <Key>
             <PropertyRef Name="ID" />
@@ -63,6 +52,7 @@
           <Property Name="KULLANICIADI" Type="varchar" MaxLength="20" />
           <Property Name="SIFRE" Type="varchar" MaxLength="20" />
           <Property Name="DURUM" Type="bit" />
+          <Property Name="Role" Type="varchar" MaxLength="5" />
         </EntityType>
         <Association Name="FK_TBLSATISHAREKET_TBLURUN">
           <End Role="TBLURUN" Type="Self.TBLURUN" Multiplicity="0..1" />
@@ -94,7 +84,6 @@
         <Function Name="TukenenBiberKilosu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="TukenenFistikKilosu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="DBUrunStokModelStoreContainer">
-          <EntitySet Name="TBLADMIN" EntityType="Self.TBLADMIN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBLDUYURU" EntityType="Self.TBLDUYURU" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBLSATISHAREKET" EntityType="Self.TBLSATISHAREKET" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBLURUN" EntityType="Self.TBLURUN" Schema="dbo" store:Type="Tables" />
@@ -163,6 +152,7 @@
           <Property Name="SIFRE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="DURUM" Type="Boolean" />
           <NavigationProperty Name="TBLSATISHAREKET" Relationship="Self.FK_TBLSATISHAREKET_TBLUYE" FromRole="TBLUYE" ToRole="TBLSATISHAREKET" />
+          <Property Name="Role" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_TBLSATISHAREKET_TBLURUN">
           <End Role="TBLURUN" Type="Self.TBLURUN" Multiplicity="0..1" />
@@ -201,7 +191,6 @@
             <End Role="TBLUYE" EntitySet="TBLUYE" />
             <End Role="TBLSATISHAREKET" EntitySet="TBLSATISHAREKET" />
           </AssociationSet>
-          <EntitySet Name="TBLADMIN" EntityType="DBUrunStokModel.TBLADMIN" />
           <FunctionImport Name="EnCokSatilanUrun" ReturnType="Collection(String)" />
           <FunctionImport Name="EnCokSatisYapanUye" />
           <FunctionImport Name="TukenenBademKilosu" ReturnType="Collection(Double)" />
@@ -209,17 +198,6 @@
           <FunctionImport Name="TukenenFistikKilosu" ReturnType="Collection(Double)" />
           <FunctionImport Name="EnCokSatanUye" ReturnType="Collection(String)" />
         </EntityContainer>
-        <EntityType Name="TBLADMIN">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="SOYAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="KULLANICIADI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="SIFRE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="DURUM" Type="Boolean" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -269,24 +247,13 @@
           <EntitySetMapping Name="TBLUYE">
             <EntityTypeMapping TypeName="DBUrunStokModel.TBLUYE">
               <MappingFragment StoreEntitySet="TBLUYE">
+                <ScalarProperty Name="Role" ColumnName="Role" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="AD" ColumnName="AD" />
                 <ScalarProperty Name="SOYAD" ColumnName="SOYAD" />
                 <ScalarProperty Name="KULLANICIADI" ColumnName="KULLANICIADI" />
                 <ScalarProperty Name="SIFRE" ColumnName="SIFRE" />
                 <ScalarProperty Name="DURUM" ColumnName="DURUM" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TBLADMIN">
-            <EntityTypeMapping TypeName="DBUrunStokModel.TBLADMIN">
-              <MappingFragment StoreEntitySet="TBLADMIN">
-                <ScalarProperty Name="DURUM" ColumnName="DURUM" />
-                <ScalarProperty Name="SIFRE" ColumnName="SIFRE" />
-                <ScalarProperty Name="KULLANICIADI" ColumnName="KULLANICIADI" />
-                <ScalarProperty Name="SOYAD" ColumnName="SOYAD" />
-                <ScalarProperty Name="AD" ColumnName="AD" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

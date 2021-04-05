@@ -9,7 +9,7 @@ using PagedList.Mvc;
 
 namespace UrunStokOtomasyonu.Controllers
 {
-    
+    [Authorize(Roles ="A")]
     public class DuyuruController : Controller
     {
         DBUrunStokEntities db = new DBUrunStokEntities();

@@ -7,6 +7,7 @@ using UrunStokOtomasyonu.Models.EntityFramework;
 
 namespace UrunStokOtomasyonu.Controllers
 {
+    [Authorize(Roles = "A")]
     public class HomeController : Controller
     {
         DBUrunStokEntities db = new DBUrunStokEntities();
@@ -14,7 +15,7 @@ namespace UrunStokOtomasyonu.Controllers
         {
             var urn = db.TBLURUN.Count();
             ViewBag.d1 = urn;
-            var uye = db.TBLUYE.Count();
+            var uye = db.TBLUYE.Where(x=>x.Role == "U").Count();
             ViewBag.d2 = uye;
             var duyuru = db.TBLDUYURU.Count();
             ViewBag.d3 = duyuru;
@@ -43,33 +44,19 @@ namespace UrunStokOtomasyonu.Controllers
             return View();
         }
 
-        public ActionResult AyarGoruntule(int id = 1)
+        [AllowAnonymous]
+        public ActionResult Page403()
         {
-            var admin = db.TBLADMIN.Where(x => x.ID == id).FirstOrDefault();
-            return View(admin);
+            Response.StatusCode = 403;
+            Response.TrySkipIisCustomErrors = true;
+            return View();
         }
-        [HttpGet]
-        public ActionResult AyarGuncelle(int id = 1)
+        [AllowAnonymous]
+        public ActionResult Page404()
         {
-            var admin = db.TBLADMIN.Where(x => x.ID == id).FirstOrDefault();
-            return View(admin);
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult AyarGuncelle(TBLADMIN t, int id = 1)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View();
-            }
-            var ayar = db.TBLADMIN.Find(id);
-            ayar.AD = t.AD;
-            ayar.SOYAD = t.SOYAD;
-            ayar.KULLANICIADI = t.KULLANICIADI;
-            ayar.SIFRE = t.SIFRE;
-            ayar.DURUM = true;
-            db.SaveChanges();
-            return RedirectToAction("AyarGuncelle");
+            Response.StatusCode = 404;
+            Response.TrySkipIisCustomErrors = true;
+            return View();
         }
      
     }

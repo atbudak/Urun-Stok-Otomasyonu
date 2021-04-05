@@ -16,28 +16,31 @@
 <form method="post">
     @Html.AntiForgeryToken()
 
-    <div class="d-flex col-lg-10 m-auto">
+    <div class="flex_container" style="max-width:1300px">
         @Html.HiddenFor(x => x.ID)
-        <div class="col-lg-6">
+        <div class="flex_col_1">
             @Html.Label("Üye Adı")
             @Html.TextBoxFor(x => x.AD, new { @class = "form-control mt-1 mb-3", placeholder = "Adı giriniz." })
-            @Html.ValidationMessageFor(x => x.AD, "", new { @style = "color:red;opacity:.7" }) <br />
+            @Html.ValidationMessageFor(x => x.AD, "", new { @style = "color:red;opacity:.7" })
+        </div>
+        <div class="flex_col_1">
             @Html.Label("Kullanıcı Adı")
             @Html.TextBoxFor(x => x.KULLANICIADI, new { @class = "form-control mt-1 mb-3", placeholder = "Kullanıcı adı giriniz." })
-            @Html.ValidationMessageFor(x => x.KULLANICIADI, "", new { @style = "color:red;opacity:.7" }) 
+            @Html.ValidationMessageFor(x => x.KULLANICIADI, "", new { @style = "color:red;opacity:.7" })
         </div>
-        <div class="col-lg-6">
+        <div class="flex_col_1">
             @Html.Label("Üye Soyadı")
             @Html.TextBoxFor(x => x.SOYAD, new { @class = "form-control mt-1 mb-3", placeholder = "Soyadı giriniz." })
-            @Html.ValidationMessageFor(x => x.SOYAD, "", new { @style = "color:red;opacity:.7" }) <br />
+            @Html.ValidationMessageFor(x => x.SOYAD, "", new { @style = "color:red;opacity:.7" })
+        </div>
+        <div class="flex_col_1">
             @Html.Label("Şifre")
-            @Html.TextBoxFor(x => x.SIFRE, new { @class = "form-control mt-1 mb-3", Type = "password", placeholder = "Şifreyi giriniz.", title = "Şifreyi görüntülemek için tıklayınız.", onclick = "return type='text'" })
+            @Html.TextBoxFor(x => x.SIFRE, new { @class = "form-control mt-1 mb-3", Type = "password", placeholder = "Şifreyi giriniz." })
             @Html.ValidationMessageFor(x => x.SIFRE, "", new { @style = "color:red;opacity:.7" })
         </div>
-
-    </div>
-    <div class="col-lg-10 mt-5">
-        <button class="btn btn-success col-lg-1 float-right">Üye Ekle</button>
+        <div class="flex_col_0">
+            <button class="btn btn-success col-lg-1 float-right">Üye Ekle</button>
+        </div>
     </div>
 
 </form>

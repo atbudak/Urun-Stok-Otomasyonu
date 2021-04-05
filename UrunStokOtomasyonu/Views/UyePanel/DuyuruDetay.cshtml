@@ -1,0 +1,34 @@
+﻿@model UrunStokOtomasyonu.Models.EntityFramework.TBLDUYURU
+
+@{
+    ViewBag.Title = "DuyuruDetay";
+    Layout = "~/Views/Shared/_UyePanelLayout.cshtml";
+}
+
+
+<div class="mw-500 text-center bg-transparent mb-5 mt-5">
+    <h1 class="sketchy text-center">Duyuru Detay</h1>
+</div>
+
+<div class="flex_container" style="max-width:1224px;">
+    <div class="flex_col_0">
+        <a href="/UyePanel/Duyurular" class="btn btn-info float-right">Duyurular</a>
+    </div>
+</div>
+
+<div class="flex_container" style="max-width:1300px">
+
+    @Html.HiddenFor(x => x.ID)
+    <div class="flex_col_1">
+        @Html.Label("Konu")
+        @Html.TextBoxFor(x => x.KONU, new { @class = "form-control mt-1 mb-3", @readonly = "" })
+    </div>
+    <div class="flex_col_1">
+        @Html.Label("Tarihi")
+        @Html.TextBoxFor(x => x.TARIH, "{0:dd/MM/yyyy}", new { @class = "form-control mt-1 mb-3", @readonly = "" })
+    </div>
+    <div class="flex_col_0">
+        @Html.Label("Mesaj")
+        @Html.TextAreaFor(x => x.ICERIK, new { @class = "form-control mt-1 mb-3", @readonly = "" })
+    </div>
+</div>

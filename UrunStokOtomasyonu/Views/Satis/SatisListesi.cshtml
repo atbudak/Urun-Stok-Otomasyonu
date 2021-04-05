@@ -53,7 +53,7 @@
                 else if (x.ACTION == "1")
                 {
                     aksiyon = "btn text-white text-lg-center";
-                    isim = "Sipariş Tükendi";
+                    isim = "İstek";
                     stil = "background-color:darkviolet";
                 }
                 else if (x.ACTION == "2")
@@ -102,7 +102,7 @@
                     <td>@x.URUNMIKTARI kg</td>
                     <td>@x.ISLEMTUTARI TL</td>
                     <td>@x.MUSTERI</td>
-                    <td style="max-width:140px;overflow:hidden" title="Mesajı Güncelle butonuna tıklayarak görüntüleyebilirsiniz.">@x.MUSTERIDETAY</td>
+                    <td style="max-width:140px;overflow:hidden;white-space:nowrap" title="Mesajı Güncelle butonuna tıklayarak görüntüleyebilirsiniz.">@x.MUSTERIDETAY</td>
                     <td> <span class="@aksiyon" style="@stil">@isim</span> </td>
                     <td><a href="/Satis/SatisGetir/@x.ID" class="btn btn-default btn-outline-dark text-center">Güncelle</a></td>
 

@@ -4,92 +4,209 @@
 }
 
 <!DOCTYPE html>
-<html lang="tr">
+
+<html>
 
 <head>
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Üye Dashboard</title>
 
-    <title>Üye Paneli</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap core CSS -->
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    @*<link href="~/webpanel/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">*@
+    <link href="~/webpanel/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="~/Content/PagedList.css" rel="stylesheet" />
-    <!-- Custom styles for this template -->
-    <link href="~/Content/UyeLayout/simple-sidebar.css" rel="stylesheet" />
-    @*<link href="~/webpanel/css/simple-sidebar.css" rel="stylesheet">*@
+    <!-- icheck bootstrap -->
+    <link href="~/webpanel/Profil/icheck-bootstrap.min.css" rel="stylesheet" />
+    <!-- Theme style -->
+    <link href="~/webpanel/Profil/adminlte.css" rel="stylesheet" />
+    <!-- summernote -->
+    <link href="~/webpanel/Profil/summernote-bs4.css" rel="stylesheet" />
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link href="~/sidebar-01/css/popup.css" rel="stylesheet" />
+    <link href="~/Content/sayfamb.css" rel="stylesheet" />
 </head>
 
-<body>
+<body class="hold-transition sidebar-mini layout-fixed">
 
-    <div class="d-flex" id="wrapper">
+    <div class="wrapper">
 
-        <!-- Sidebar -->
-        <div class="bg-light border-right" id="sidebar-wrapper">
-            <div style="max-width:180px; margin: 20px auto;">
-                <a href="/UyePanel/SatisListesi"><img src="~/webpanel/css/logo-p.jpg" class="img-circle" style="max-width: 180px; border-radius: 50% " alt="Üye Paneli" /></a>
-            </div>
-            <div class="sidebar-heading font-weight-bold text-center">ÜYE PANELİ</div>
-            <div class="list-group list-group-flush">
-                <a href="/UyePanel/Profil" class="list-group-item list-group-item-action bg-light">Profilim</a>
-                <a href="/UyePanel/SatisListesi" class="list-group-item list-group-item-action bg-light">Satışlar</a>
-                <a href="/UyePanel/DuyuruListesi" class="list-group-item list-group-item-action bg-light">Duyurular</a>
-            </div>
-        </div>
-        <!-- /#sidebar-wrapper -->
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
+        <!-- Main Sidebar Container -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fa fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="/UyePanel/Anasayfa" class="nav-link">Anasayfa</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="/UyePanel/SatisEkle" class="nav-link">Satış</a>
+                </li>
+            </ul>
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                <button class="btn btn-primary" id="menu-toggle">Menü</button>
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Login/UyeLogout" role="button">
+                        <i class="fa fa-sign-out"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="/UyePanel/SatisEkle" target="_blank">Satış Ekle <span class="sr-only">(current)</span></a>
+            <div class="sidebar">
+
+                <!-- Sidebar user panel (optional) -->
+                <div style="max-width:180px; margin: 20px auto;">
+                    <a href="/UyePanel/Anasayfa"><img src="~/webpanel/default-profile.jpg" class="img-circle" style="width:100%;max-width: 180px;" alt="Üye Paneli" /></a>
+                </div>
+
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+
+                    <div class="info">
+
+                        <a href="#" class="d-block">Üye Paneli</a>
+
+                    </div>
+
+                </div>
+
+                <!-- Sidebar Menu -->
+
+                <nav class="mt-2">
+
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+                        <li class="nav-item">
+                            <a href="/UyePanel/Anasayfa" class="nav-link"><i class="nav-icon fa fa-home"></i><p>Anasayfa</p></a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Ayarlar
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/UyePanel/Profil">Profilim</a>
-                                <a class="dropdown-item" href="/Login/UyeLogout">Çıkış Yap</a>
-                            </div>
+                        <li class="nav-item">
+                            <a href="/UyePanel/Profil" class="nav-link"><i class="nav-icon fa fa-user-circle-o"></i><p>Profilim</p></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/UyePanel/Duyurular" class="nav-link"><i class="nav-icon fa fa-anchor"></i><p>Duyurular</p></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/UyePanel/SatisListesi" class="nav-link"><i class="nav-icon fa fa-book"></i><p>Satışlar</p></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/UyePanel/IstenenUrunler" class="nav-link"><i class="nav-icon fa fa-bookmark-o"></i><p>İstenen Ürünler</p></a>
+                        </li>
+                        @if (User.IsInRole("A"))
+                        {
+                            <li class="nav-item">
+                                <a href="/Home/Indexs" class="nav-link"><i class="nav-icon fa fa-key"></i><p>Admin</p></a>
+                            </li>
+                        }
+                        <li class="nav-item">
+                            <a href="#popup1" class="nav-link"><i class="nav-icon fa fa-wrench"></i><p>Yardım</p></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Login/UyeLogout" class="nav-link"><i class="nav-icon fa fa-sign-out"></i><p>Çıkış</p></a>
                         </li>
                     </ul>
-                </div>
-            </nav>
 
-            <div class="container-fluid">
-                @RenderBody()
+                </nav>
+
+                <!-- /.sidebar-menu -->
+
             </div>
+
+            <!-- /.sidebar -->
+
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+
+        <div class="content-wrapper">
+
+            <!-- Content Header (Page header) -->
+
+            <div class="content">
+
+                <div class="container-fluid">
+
+                    <div class="row mb-2">
+
+
+
+
+
+                    </div><!-- /.row -->
+
+                </div><!-- /.container-fluid -->
+
+            </div>
+
+            <!-- /.content-header -->
+            <!-- Main content -->
+
+            <section class="content">
+
+                <div class="container-fluid">
+
+                    @RenderBody()
+
+
+
+                </div><!-- /.container-fluid -->
+
+            </section>
+
+            <!-- /.content -->
+
         </div>
-        <!-- /#page-content-wrapper -->
 
     </div>
-    <!-- /#wrapper -->
-    <!-- Bootstrap core JavaScript -->
-    <script src="~/Content/UyeLayout/bootstrap.bundle.min.js"></script>
-    @*<script src="~/webpanel/vendor/jquery/jquery.min.js"></script>*@
-    <script src="~/Content/UyeLayout/jquery.min.js"></script>
-    @*<script src="~/webpanel/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>*@
 
-    <!-- Menu Toggle Script -->
+    <!-- ./wrapper -->
+    <!-- jQuery -->
+
+    <script src="~/webpanel/Profil/demo.js"></script>
+    <!-- jQuery -->
+
+    <script src="~/webpanel/Profil/jquery.min.js"></script>
+
+    <!-- Bootstrap 4 -->
+
+    <script src="~/webpanel/Profil/bootstrap.bundle.min.js"></script>
+
+    <!-- AdminLTE App -->
+
+    <script src="~/webpanel/Profil/adminlte.min.js"></script>
+
+    <!-- Summernote -->
+
+    <script src="/webpanel/Profil/summernote-bs4.min.js"></script>
+
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+
     <script>
-        $("#menu-toggle").click(function (e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });</script>
+
+        $.widget.bridge('uibutton', $.ui.button)
+
+    </script>
+
 
 </body>
 
 </html>
+
+
+<div id="popup1" class="overlay">
+    <div class="popup">
+        <h2>Bilgilendirme Kutusu</h2>
+        <a class="close" href="">&times;</a>
+        <div class="content">
+            Thank to pop me out of that button, but now i'm done so you can close this window.
+        </div>
+    </div>
+</div>

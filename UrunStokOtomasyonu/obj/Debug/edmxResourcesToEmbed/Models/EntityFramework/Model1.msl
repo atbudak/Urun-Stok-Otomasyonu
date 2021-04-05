@@ -44,24 +44,13 @@
     <EntitySetMapping Name="TBLUYE">
       <EntityTypeMapping TypeName="DBUrunStokModel.TBLUYE">
         <MappingFragment StoreEntitySet="TBLUYE">
+          <ScalarProperty Name="Role" ColumnName="Role" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="AD" ColumnName="AD" />
           <ScalarProperty Name="SOYAD" ColumnName="SOYAD" />
           <ScalarProperty Name="KULLANICIADI" ColumnName="KULLANICIADI" />
           <ScalarProperty Name="SIFRE" ColumnName="SIFRE" />
           <ScalarProperty Name="DURUM" ColumnName="DURUM" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="TBLADMIN">
-      <EntityTypeMapping TypeName="DBUrunStokModel.TBLADMIN">
-        <MappingFragment StoreEntitySet="TBLADMIN">
-          <ScalarProperty Name="DURUM" ColumnName="DURUM" />
-          <ScalarProperty Name="SIFRE" ColumnName="SIFRE" />
-          <ScalarProperty Name="KULLANICIADI" ColumnName="KULLANICIADI" />
-          <ScalarProperty Name="SOYAD" ColumnName="SOYAD" />
-          <ScalarProperty Name="AD" ColumnName="AD" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

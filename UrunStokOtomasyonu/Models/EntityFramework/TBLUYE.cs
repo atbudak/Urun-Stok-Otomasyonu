@@ -24,11 +24,11 @@ namespace UrunStokOtomasyonu.Models.EntityFramework
         public int? ID { get; set; }
 
         [Required(ErrorMessage = "Ad alaný zorunludur.")]
-        [StringLength(maximumLength: 50, ErrorMessage = "Adýnýzýn uzunluðunu kontrol ediniz.", MinimumLength = 2)]      
+        [StringLength(maximumLength: 50, ErrorMessage = "Adýnýzýn uzunluðunu kontrol ediniz.", MinimumLength = 2)]
         public string AD { get; set; }
 
         [Required(ErrorMessage = "Soyad alaný zorunludur.")]
-        [StringLength(maximumLength: 50, ErrorMessage = "Soyadýnýzýn uzunluðunu kontrol ediniz.", MinimumLength = 2)]       
+        [StringLength(maximumLength: 50, ErrorMessage = "Soyadýnýzýn uzunluðunu kontrol ediniz.", MinimumLength = 2)]
         public string SOYAD { get; set; }
 
         [Required(ErrorMessage = "Kullanýcý adý alaný zorunludur.")]
@@ -36,9 +36,10 @@ namespace UrunStokOtomasyonu.Models.EntityFramework
         public string KULLANICIADI { get; set; }
 
         [Required(ErrorMessage = "Þifre alaný zorunludur.")]
-        [StringLength(maximumLength: 20, ErrorMessage = "Þifreniz 6 ile 20 karakter uzunluðunda olmalýdýr.", MinimumLength = 6)]
+        [StringLength(maximumLength: 20, ErrorMessage = "Þifreniz 4 ile 20 karakter uzunluðunda olmalýdýr.", MinimumLength = 6)]
         public string SIFRE { get; set; }
         public Nullable<bool> DURUM { get; set; }
+        public string Role { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TBLSATISHAREKET> TBLSATISHAREKET { get; set; }

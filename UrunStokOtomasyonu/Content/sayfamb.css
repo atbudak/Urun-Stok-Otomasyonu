@@ -1,0 +1,37 @@
+﻿.flex_container {
+    display: flex;
+    display: -webkit-flex;
+    justify-content:space-between;
+    align-items: center;
+    flex-flow: row wrap;
+    flex-direction: column;
+    overflow: auto;
+    width: 100%;
+    max-width: 1920px;
+    margin: 10px auto;
+    padding: 5px;
+    -webkit-flex-flow: row wrap;
+}
+cols_Available{
+    max-width:1240px;
+}
+.flex_col_0 {
+    width: 100%;
+    margin-bottom: 30px;
+    padding: 0 5px;
+}
+.flex_col_1{
+    width:49%;
+    margin-bottom:30px;
+    padding:0 5px;
+}
+.flex_col_2 {
+    width: 25%;
+    margin-bottom: 30px;
+    padding: 0 5px;
+}
+
+@media only screen and (max-width : 480px){
+    .flex_col_1{width:100%;}
+    .flex_col_2{width:50%;}
+}

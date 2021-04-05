@@ -9,6 +9,7 @@ using PagedList.Mvc;
 
 namespace UrunStokOtomasyonu.Controllers
 {
+    [Authorize(Roles = "A")]
     public class UyeController : Controller
     {
         DBUrunStokEntities db = new DBUrunStokEntities();
@@ -20,7 +21,7 @@ namespace UrunStokOtomasyonu.Controllers
             {
                 urun = urun.Where(z => z.AD.ToUpper().Contains(search.ToUpper()) && z.DURUM == true);
             }
-            return View(urun.Where(x => x.DURUM == true).ToList().ToPagedList(page, 10));
+            return View(urun.Where(x => x.DURUM == true && x.Role== "U").ToList().ToPagedList(page, 10));
         }
 
         public ActionResult PasifUyeListesi(string search, int page = 1)
@@ -30,7 +31,7 @@ namespace UrunStokOtomasyonu.Controllers
             {
                 urun = urun.Where(z => z.AD.ToUpper().Contains(search.ToUpper()) && z.DURUM == false);
             }
-            return View(urun.Where(x => x.DURUM == false).ToList().ToPagedList(page, 10));
+            return View(urun.Where(x => x.DURUM == false && x.Role == "U").ToList().ToPagedList(page, 10));
         }
 
         public ActionResult AktifEt(int id)
@@ -67,6 +68,7 @@ namespace UrunStokOtomasyonu.Controllers
                 }
                 db.TBLUYE.Add(t);
                 t.DURUM = true;
+                t.Role = "U";
                 db.SaveChanges();
                 return RedirectToAction("UyeListesi");
             }

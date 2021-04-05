@@ -31,7 +31,6 @@ namespace UrunStokOtomasyonu.Models.EntityFramework
         public virtual DbSet<TBLSATISHAREKET> TBLSATISHAREKET { get; set; }
         public virtual DbSet<TBLURUN> TBLURUN { get; set; }
         public virtual DbSet<TBLUYE> TBLUYE { get; set; }
-        public virtual DbSet<TBLADMIN> TBLADMIN { get; set; }
     
         public virtual ObjectResult<string> EnCokSatilanUrun()
         {

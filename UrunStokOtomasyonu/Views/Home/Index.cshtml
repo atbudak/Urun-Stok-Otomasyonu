@@ -6,9 +6,6 @@
     addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
            function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //custom-theme -->
-@*<link href="~/web3/css/component.css" rel="stylesheet" type="text/css" media="all" />
-<link href="~/web3/css/style_grid.css" rel="stylesheet" type="text/css" media="all" />
-<link href="~/web3/css/style.css" rel="stylesheet" type="text/css" media="all" />*@
 <link href="~/Content/AdminKartlar/component.css" rel="stylesheet" media="all"/>
 <link href="~/Content/AdminKartlar/style.css" rel="stylesheet" media="all"/>
 <link href="~/Content/AdminKartlar/style_grid.css" rel="stylesheet" media="all"/>
@@ -17,9 +14,9 @@
 
 <!-- banner -->
 <div class="clearfix"></div>
-<div class="m-auto">
+<div class="flex_container">
     <ul class="ca-menu">
-        <li>
+        <li title="Satılmakta olan ürün çeşitlerini gösterir.">
             <a href="#">
                 <i class="fa fa-book" aria-hidden="true"></i>
                 <div class="ca-content">
@@ -28,7 +25,7 @@
                 </div>
             </a>
         </li>
-        <li>
+        <li title="Sisteme kayıtlı üye sayısını gösterir.">
             <a href="#">
                 <i class="fa fa-user" aria-hidden="true"></i>
                 <div class="ca-content">
@@ -37,18 +34,18 @@
                 </div>
             </a>
         </li>
-        <li>
+        <li title="Şimdiye kadar yollanılan duyuru sayısını gösterir.">
             <a href="#">
-                <i class="fa fa-money" aria-hidden="true"></i>
+                <i class="fa fa-bookmark-o" aria-hidden="true"></i>
                 <div class="ca-content">
                     <h4 class="ca-main two">@ViewBag.d3</h4>
                     <h3 class="ca-sub two">Duyuru Sayımız</h3>
                 </div>
             </a>
         </li>
-        <li>
+        <li title="Her bir üye tarafından yapılan satış sayılarının toplamını gösterir.">
             <a href="#">
-                <i class="fa fa-bookmark" aria-hidden="true"></i>
+                <i class="fa fa-contao" aria-hidden="true"></i>
                 <div class="ca-content">
                     <h4 class="ca-main three">@ViewBag.d4</h4>
                     <h3 class="ca-sub three">Bütün Siparişlerin Sayısı</h3>
@@ -59,16 +56,16 @@
     </ul>
 
     <ul class="ca-menu">
-        <li>
+        <li title="Üyeler tarafından istekte bulunan siparişlerin sayısını gösterir.Bkz. Siparişler">
             <a href="#">
                 <i class="fa fa-list" aria-hidden="true"></i>
                 <div class="ca-content">
                     <h4 class="ca-main">@ViewBag.d5</h4>
-                    <h3 class="ca-sub">Tükenen Sipariş Sayımız</h3>
+                    <h3 class="ca-sub">Sipariş Sayımız</h3>
                 </div>
             </a>
         </li>
-        <li>
+        <li title="Müşteriye teslim edilmiş ya da iptal edilmiş siparişleri gösterir.">
             <a href="#">
                 <i class="fa fa-suitcase" aria-hidden="true"></i>
                 <div class="ca-content">
@@ -77,7 +74,7 @@
                 </div>
             </a>
         </li>
-        <li>
+        <li title="Üyeler tarafından istekte bulunan Antep Fıstığı siparişlerinin kilogramını gösterir.Bkz. Siparişler">
             <a href="#">
                 <i class="fa fa-database" aria-hidden="true"></i>
                 <div class="ca-content">
@@ -87,9 +84,9 @@
             </a>
         </li>
 
-        <li>
+        <li title="Üyeler tarafından istekte bulunan Badem siparişlerinin kilogramını gösterir.Bkz. Siparişler">
             <a href="#">
-                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <i class="fa fa-database" aria-hidden="true"></i>
                 <div class="ca-content">
                     <h4 class="ca-main three">@ViewBag.d8</h4>
                     <h3 class="ca-sub three">Sipariş Badem (Kg)</h3>
@@ -99,18 +96,18 @@
 
     </ul>
     <ul class="ca-menu">
-        <li>
+        <li title="Üyeler tarafından istekte bulunan Biber siparişlerinin kilogramını gösterir.Bkz. Siparişler">
             <a href="#">
-                <i class="fa fa-barcode" aria-hidden="true"></i>
+                <i class="fa fa-database" aria-hidden="true"></i>
                 <div class="ca-content">
                     <h4 class="ca-main">@ViewBag.d9</h4>
                     <h3 class="ca-sub">Sipariş Biber (Kg)</h3>
                 </div>
             </a>
         </li>
-        <li>
+        <li title="Üyenin devam ettirdiği siparişlerin listesini gösterir.">
             <a href="#">
-                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                <i class="fa fa-hand-grab-o" aria-hidden="true"></i>
                 <div class="ca-content">
                     <h4 class="ca-main one">@ViewBag.d10</h4>
                     <h3 class="ca-sub one">Devam Eden Siparişlerimiz</h3>

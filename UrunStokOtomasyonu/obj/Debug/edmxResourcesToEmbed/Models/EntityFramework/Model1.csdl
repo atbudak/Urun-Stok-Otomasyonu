@@ -51,6 +51,7 @@
     <Property Name="SIFRE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="DURUM" Type="Boolean" />
     <NavigationProperty Name="TBLSATISHAREKET" Relationship="Self.FK_TBLSATISHAREKET_TBLUYE" FromRole="TBLUYE" ToRole="TBLSATISHAREKET" />
+    <Property Name="Role" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK_TBLSATISHAREKET_TBLURUN">
     <End Role="TBLURUN" Type="Self.TBLURUN" Multiplicity="0..1" />
@@ -89,7 +90,6 @@
       <End Role="TBLUYE" EntitySet="TBLUYE" />
       <End Role="TBLSATISHAREKET" EntitySet="TBLSATISHAREKET" />
     </AssociationSet>
-    <EntitySet Name="TBLADMIN" EntityType="DBUrunStokModel.TBLADMIN" />
     <FunctionImport Name="EnCokSatilanUrun" ReturnType="Collection(String)" />
     <FunctionImport Name="EnCokSatisYapanUye" />
     <FunctionImport Name="TukenenBademKilosu" ReturnType="Collection(Double)" />
@@ -97,15 +97,4 @@
     <FunctionImport Name="TukenenFistikKilosu" ReturnType="Collection(Double)" />
     <FunctionImport Name="EnCokSatanUye" ReturnType="Collection(String)" />
   </EntityContainer>
-  <EntityType Name="TBLADMIN">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="AD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="SOYAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="KULLANICIADI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="SIFRE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="DURUM" Type="Boolean" />
-  </EntityType>
 </Schema>

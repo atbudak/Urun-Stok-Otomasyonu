@@ -1,16 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="DBUrunStokModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="TBLADMIN">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="AD" Type="varchar" MaxLength="50" />
-    <Property Name="SOYAD" Type="varchar" MaxLength="50" />
-    <Property Name="KULLANICIADI" Type="varchar" MaxLength="20" />
-    <Property Name="SIFRE" Type="varchar" MaxLength="20" />
-    <Property Name="DURUM" Type="bit" />
-  </EntityType>
   <EntityType Name="TBLDUYURU">
     <Key>
       <PropertyRef Name="ID" />
@@ -58,6 +47,7 @@
     <Property Name="KULLANICIADI" Type="varchar" MaxLength="20" />
     <Property Name="SIFRE" Type="varchar" MaxLength="20" />
     <Property Name="DURUM" Type="bit" />
+    <Property Name="Role" Type="varchar" MaxLength="5" />
   </EntityType>
   <Association Name="FK_TBLSATISHAREKET_TBLURUN">
     <End Role="TBLURUN" Type="Self.TBLURUN" Multiplicity="0..1" />
@@ -89,7 +79,6 @@
   <Function Name="TukenenBiberKilosu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="TukenenFistikKilosu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="DBUrunStokModelStoreContainer">
-    <EntitySet Name="TBLADMIN" EntityType="Self.TBLADMIN" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TBLDUYURU" EntityType="Self.TBLDUYURU" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TBLSATISHAREKET" EntityType="Self.TBLSATISHAREKET" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TBLURUN" EntityType="Self.TBLURUN" Schema="dbo" store:Type="Tables" />
