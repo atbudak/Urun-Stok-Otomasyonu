@@ -72,6 +72,7 @@ namespace UrunStokOtomasyonu.Controllers
             }
             catch
             {
+                TempData["hata"] = "İşlem Başarısız.";
                 return RedirectToAction("UrunEkle");
             }
         }

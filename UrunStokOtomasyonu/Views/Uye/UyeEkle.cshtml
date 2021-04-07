@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "UyeEkle";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var hata = TempData["hata"];
 }
 
 <div class="mw-500 text-center bg-transparent">
@@ -41,6 +42,7 @@
         <div class="flex_col_0">
             <button class="btn btn-success col-lg-1 float-right">Üye Ekle</button>
         </div>
+        <div class="flex_col_0 text-center text-danger">@hata</div>
     </div>
 
 </form>

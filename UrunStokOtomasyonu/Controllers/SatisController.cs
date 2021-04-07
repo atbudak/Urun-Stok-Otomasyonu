@@ -81,16 +81,20 @@ namespace UrunStokOtomasyonu.Controllers
                     {
                         db.TBLSATISHAREKET.Add(k);
                         db.SaveChanges();
+                        //TempData["s0"] = "Başarıyla eklendi";
                         return RedirectToAction("SatisListesi");
                     }
-
-                    ViewBag.err1 = "Stok bulunmadığı durumda Sipariş Tükendi seçeneğini seçmelisiniz.";
-                    return RedirectToAction("SatisEkle");
+                    else
+                    {
+                        TempData["s0"] = "Stok sizin talep ettiğiniz miktarı karşılamadığı için kaydedilemedi.İstek Satış aşamasını seçerek adminden talep edebilirsiniz.";
+                        return RedirectToAction("SatisEkle");
+                    }
                 }
                 else
                 {
                     db.TBLSATISHAREKET.Add(k);
                     db.SaveChanges();
+                    //TempData["s0"] = "Başarıyla eklendi";
                     return RedirectToAction("SatisListesi");
                 }
             }
@@ -100,10 +104,14 @@ namespace UrunStokOtomasyonu.Controllers
                 {
                     db.TBLSATISHAREKET.Add(k);
                     db.SaveChanges();
+                    //TempData["s0"] = "Başarıyla eklendi";
                     return RedirectToAction("SatisListesi");
                 }
-                ViewBag.err1 = "Stok bulunmadığı durumda Sipariş Tükendi seçeneğini seçmelisiniz.";
-                return RedirectToAction("SatisEkle");
+                else
+                {
+                    TempData["s0"] = "Stok bulunmadığı durumda İstek seçeneğini seçmelisiniz.";
+                    return RedirectToAction("SatisEkle");
+                }
             }
 
         }
@@ -144,7 +152,12 @@ namespace UrunStokOtomasyonu.Controllers
                         if (t.ACTION == "1")
                         {
                             sts.URUNMIKTARI = t.URUNMIKTARI;
-                            ViewBag.err1 = "Stok bulunmamaktadır.";
+                            //TempData["mesaj"] = "Başarıyla güncellendi.";
+                        }
+                        else
+                        {
+                            TempData["mesaj"] = "Stok sizin talep ettiğiniz miktarı karşılamadığı için kaydedilemedi.İstek Satış aşamasını seçerek adminden talep edebilirsiniz.";
+                            return RedirectToAction("SatisGetir/"+ t.ID);
                         }
                     }
                     else
@@ -152,9 +165,14 @@ namespace UrunStokOtomasyonu.Controllers
                         if (t.ACTION == "6" && sts.ACTION == "1")
                         {
                             urn.STOK = kalanstok;
-
+                            sts.URUNMIKTARI = t.URUNMIKTARI;
+                            //TempData["mesaj"] = "Başarıyla güncellendi.(Stok miktarı değişti)";
                         }
-                        sts.URUNMIKTARI = t.URUNMIKTARI;
+                        else
+                        {
+                            sts.URUNMIKTARI = t.URUNMIKTARI;
+                        }
+                        
                     }
                 }
                 else
@@ -162,6 +180,12 @@ namespace UrunStokOtomasyonu.Controllers
                     if (t.ACTION == "1")
                     {
                         sts.URUNMIKTARI = t.URUNMIKTARI;
+                        //TempData["mesaj"] = "Başarıyla güncellendi.";
+                    }
+                    else
+                    {
+                        TempData["mesaj"] = "İşlem Başarısız.Yeterli ürün stoğu bulunmadığı için İstek Satış Talebini seçerek talepte bulunabilirsiniz.";
+                        return RedirectToAction("SatisGetir/" + t.ID);
                     }
                 }
 
@@ -188,7 +212,7 @@ namespace UrunStokOtomasyonu.Controllers
             {
                 foreach (var eve in e.EntityValidationErrors)
                 {
-                    
+
                 }
                 throw;
             }

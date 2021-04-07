@@ -4,6 +4,7 @@
     ViewBag.Title = "SatisGetir";
     Layout = "~/Views/Shared/_UyePanelLayout.cshtml";
     var kullanici = Session["ad"].ToString() + " " + Session["soyad"].ToString();
+    var gelenmesaj = TempData["mesaj"];
 }
 
 <div class="mw-500 text-center bg-transparent mt-5 mb-5">
@@ -19,51 +20,52 @@
 @using (Html.BeginForm("SatisGuncelle", "UyePanel", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    <div class="flex_container" style="max-width:1300px">
-        @Html.HiddenFor(x => x.ID)
-        <div class="flex_col_1">
-            <label style="margin-bottom:10px;">Ürün</label>
-            @Html.DropDownListFor(k => k.TBLURUN.ID, (List<SelectListItem>)ViewBag.urn1, new { @class = "form-control mt-1 mb-3" })
-        </div>
-        <div class="flex_col_1">
-            <label style="margin-bottom:10px;">Üye</label>
-            <input type="text" value="@kullanici" class="form-control mt-1 mb-3" readonly />
-        </div>
-        <div class="flex_col_1">
-            <label style="margin-bottom:10px;">Sipariş Tarihi</label>
-            <input type="text" class="form-control mt-1 mb-3" name="SIPARISTARIHI" value="@DateTime.Now.ToShortDateString()" readonly="readonly" />
-        </div>
-        <div class="flex_col_1">
-            <label style="margin-bottom:10px;">Teslim Tarihi</label>
-            @Html.TextBoxFor(x => x.TESLIMTARIHI, new { @class = "form-control mt-1 mb-3", type = "date" })
-        </div>
-        <div class="flex_col_1">
-            <label style="margin-bottom:10px;">Ürün Miktari (kg)</label>
-            @Html.TextBoxFor(x => x.URUNMIKTARI, new { @class = "form-control mt-1 mb-3", required = "", min = "0", max = "999999" })
-        </div>
-        <div class="flex_col_1">
-            <label style="margin-bottom:10px;">Müşteri</label>
-            @Html.TextBoxFor(x => x.MUSTERI, new { @class = "form-control mt-1 mb-3", required = "", maxlength = "50" })
-        </div>
-        <div class="flex_col_1">
-            <label style="margin-bottom:10px;">Satış Aşaması</label>
-            <div class="form-group">
-                <select class="form-control" id="category2" name="ACTION" required="">
-                    <option value="0">Sipariş Alındı</option>
-                    <option value="1">İstek</option>
-                    <option value="2">T.E. Ücret Bekleniyor</option>
-                    <option value="3">Ü.A. Teslim Bekleniyor</option>
-                    <option value="4">Tamamlandı</option>
-                    <option value="5">İptal Edildi</option>
-                </select>
-                <span></span>
-            </div>
-        </div>
-        <div class="flex_col_0">
-            @Html.Label("Müşteri Detay")
-            @Html.TextAreaFor(x => x.MUSTERIDETAY, new { @class = "form-control mt-1 mb-3", placeholder = "Detay giriniz." })
-            <button class="btn btn-success mt-2 pl-4 pr-4 float-lg-right">Ekle</button>
+<div class="flex_container" style="max-width:1300px">
+    @Html.HiddenFor(x => x.ID)
+    <div class="flex_col_1">
+        <label style="margin-bottom:10px;">Ürün</label>
+        @Html.DropDownListFor(k => k.TBLURUN.ID, (List<SelectListItem>)ViewBag.urn1, new { @class = "form-control mt-1 mb-3" })
+    </div>
+    <div class="flex_col_1">
+        <label style="margin-bottom:10px;">Üye</label>
+        <input type="text" value="@kullanici" class="form-control mt-1 mb-3" readonly />
+    </div>
+    <div class="flex_col_1">
+        <label style="margin-bottom:10px;">Sipariş Tarihi</label>
+        <input type="text" class="form-control mt-1 mb-3" name="SIPARISTARIHI" value="@DateTime.Now.ToShortDateString()" readonly="readonly" />
+    </div>
+    <div class="flex_col_1">
+        <label style="margin-bottom:10px;">Teslim Tarihi</label>
+        @Html.TextBoxFor(x => x.TESLIMTARIHI, new { @class = "form-control mt-1 mb-3", type = "date" })
+    </div>
+    <div class="flex_col_1">
+        <label style="margin-bottom:10px;">Ürün Miktari (kg)</label>
+        @Html.TextBoxFor(x => x.URUNMIKTARI, new { @class = "form-control mt-1 mb-3", required = "", min = "0", max = "999999" })
+    </div>
+    <div class="flex_col_1">
+        <label style="margin-bottom:10px;">Müşteri</label>
+        @Html.TextBoxFor(x => x.MUSTERI, new { @class = "form-control mt-1 mb-3", required = "", maxlength = "50" })
+    </div>
+    <div class="flex_col_1">
+        <label style="margin-bottom:10px;">Satış Aşaması</label>
+        <div class="form-group">
+            <select class="form-control" id="category2" name="ACTION" required="">
+                <option value="0">Sipariş Alındı</option>
+                <option value="1">İstek</option>
+                <option value="2">T.E. Ücret Bekleniyor</option>
+                <option value="3">Ü.A. Teslim Bekleniyor</option>
+                <option value="4">Tamamlandı</option>
+                <option value="5">İptal Edildi</option>
+            </select>
+            <span></span>
         </div>
     </div>
+    <div class="flex_col_0">
+        @Html.Label("Müşteri Detay")
+        @Html.TextAreaFor(x => x.MUSTERIDETAY, new { @class = "form-control mt-1 mb-3", placeholder = "Detay giriniz." })
+        <button class="btn btn-success mt-2 pl-4 pr-4 float-lg-right">Ekle</button>
+    </div>
+    <div class="flex_col_0 text-center text-danger">@gelenmesaj</div>
+</div>
 }
 

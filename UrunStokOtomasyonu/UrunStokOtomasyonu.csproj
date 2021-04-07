@@ -301,7 +301,6 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-    <Content Include="sidebar-01\css\popup.css" />
     <Content Include="webpanel\default-profile.jpg" />
     <Content Include="webpanel\Profil\adminlte.css" />
     <Content Include="webpanel\Profil\adminlte.min.js" />

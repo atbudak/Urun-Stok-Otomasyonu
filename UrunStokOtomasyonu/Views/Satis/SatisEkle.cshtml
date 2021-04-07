@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "SatisEkle";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var gelenmesaj = TempData["s0"];
 }
 
 <div class="mw-500 text-center bg-transparent mb-4">
@@ -70,7 +71,7 @@
             <button class="btn btn-success mt-2 pl-4 pr-4 float-lg-right">Ekle</button>
         </div>
 
-
+        <div class="flex_col_0 text-center text-danger">@gelenmesaj</div>
     </div>
 
 </form>

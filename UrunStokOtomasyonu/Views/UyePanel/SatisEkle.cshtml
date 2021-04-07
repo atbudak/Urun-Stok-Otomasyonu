@@ -4,6 +4,7 @@
     ViewBag.Title = "SatisEkle";
     Layout = "~/Views/Shared/_UyePanelLayout.cshtml";
     var kullanici = Session["ad"].ToString() + " " + Session["soyad"].ToString();
+    var gelenmesaj = TempData["s0"];
 }
 
 
@@ -65,6 +66,7 @@
             @Html.TextAreaFor(x => x.MUSTERIDETAY, new { @class = "form-control mt-1 mb-3", placeholder = "Detay giriniz." })
             <button class="btn btn-success mt-2 pl-4 pr-4 float-lg-right">Ekle</button>
         </div>
+        <div class="flex_col_0 text-center text-danger">@gelenmesaj</div>
     </div>
 
 

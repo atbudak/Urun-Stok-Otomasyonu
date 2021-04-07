@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Ürün Ekle";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var hata = TempData["hata"];
 }
 
 <div class="mw-500 text-center bg-transparent">
@@ -36,6 +37,7 @@
         @Html.TextAreaFor(x => x.DETAY, new { @class = "form-control mt-1 mb-3", placeholder = "Detay giriniz." })
         <button class="btn btn-success mt-2 pl-4 pr-4 float-lg-right">Ekle</button>
     </div>
+    <div class="flex_col_0 text-center text-danger">@hata</div>
 </div>
 
 }

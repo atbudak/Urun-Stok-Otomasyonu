@@ -55,7 +55,7 @@ namespace UrunStokOtomasyonu.Controllers
 
             return View(deger);
         }
-        public ActionResult Profil(TBLUYE t)
+        public ActionResult Profil()
         {
             var uye = (string)Session["Kullanici"];
             var deger = db.TBLUYE.FirstOrDefault(x => x.KULLANICIADI == uye);
@@ -177,7 +177,7 @@ namespace UrunStokOtomasyonu.Controllers
             double? kalanstok = stok - urunmiktari;
             if (stok > 0)
             {
-                if (kalanstok < 0)
+                if (kalanstok <= 0)
                 {
                     if (k.ACTION == "1")
                     {
@@ -185,9 +185,14 @@ namespace UrunStokOtomasyonu.Controllers
                         db.SaveChanges();
                         return RedirectToAction("SatisListesi");
                     }
-                    return RedirectToAction("SatisEkle");
+                    else
+                    {
+                        TempData["s0"] = "Stok sizin talep ettiğiniz miktarı karşılamadığı için kaydedilemedi.İstek Satış aşamasını seçerek adminden talep edebilirsiniz.";
+                        return RedirectToAction("SatisEkle");
+                    }
+                    
                 }
-                else if (kalanstok > 0)
+                else
                 {
                     db.TBLSATISHAREKET.Add(k);
                     db.SaveChanges();
@@ -202,12 +207,14 @@ namespace UrunStokOtomasyonu.Controllers
                     db.SaveChanges();
                     return RedirectToAction("SatisListesi");
                 }
-                return RedirectToAction("SatisEkle");
+                else
+                {
+                    TempData["s0"] = "Stok bulunmadığı durumda İstek seçeneğini seçmelisiniz.";
+                    return RedirectToAction("SatisEkle");
+                }
+                
             }
 
-            db.TBLSATISHAREKET.Add(k);
-            db.SaveChanges();
-            return RedirectToAction("SatisListesi");
         }
 
 
@@ -243,28 +250,29 @@ namespace UrunStokOtomasyonu.Controllers
                 {
                     if (t.ACTION == "1")
                     {
-                        sts.URUNMIKTARI = t.URUNMIKTARI;
-                        ViewBag.err1 = "Stok bulunmamaktadır.";
+                        sts.URUNMIKTARI = t.URUNMIKTARI;                       
                     }
                     else
                     {
-                        return View();
+                        TempData["mesaj"] = "Stok sizin talep ettiğiniz miktarı karşılamadığı için kaydedilemedi.İstek Satış aşamasını seçerek adminden talep edebilirsiniz.";
+                        return RedirectToAction("SatisGetir" + t.ID);
                     }
                 }
                 else
                 {
-                    sts.URUNMIKTARI = t.URUNMIKTARI;
+                    sts.URUNMIKTARI = t.URUNMIKTARI;                   
                 }
             }
             else
             {
                 if (t.ACTION == "1")
                 {
-                    sts.URUNMIKTARI = t.URUNMIKTARI;
+                    sts.URUNMIKTARI = t.URUNMIKTARI;                    
                 }
                 else
                 {
-                    return View();
+                    TempData["mesaj"] = "Stok bulunmadığı durumda İstek seçeneğini seçmelisiniz.";
+                    return RedirectToAction("SatisGetir" + t.ID);
                 }
             }
 
