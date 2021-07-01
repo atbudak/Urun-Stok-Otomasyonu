@@ -15,10 +15,10 @@
 
 @using (@Html.BeginForm("ButunIslemler", "Satis", FormMethod.Get))
 {
-    <div class="pull-right float-right">
-        <a href="/Satis/SatisEkle" class="btn btn-success pull-right" style="margin-bottom:15px">Yeni Satış Ekle</a>
-        <a href="/Satis/SatisListesi" class="btn btn-info pull-right mr-3" style="margin-bottom:15px">Satış Listesi</a>
-    </div>
+<div class="pull-right float-right">
+    <a href="/Satis/SatisEkle" class="btn btn-success pull-right" style="margin-bottom:15px">Yeni Satış Ekle</a>
+    <a href="/Satis/SatisListesi" class="btn btn-info pull-right mr-3" style="margin-bottom:15px">Satış Listesi</a>
+</div>
     <div class="Search-Container col-lg-4 col-lg-offset-0" style="display:flex">
         @Html.TextBox("search", "", new { placeholder = "Ürün,Üye,Müşteri adına göre ara", @class = "form-control", style = "margin-right:5px" })
         <input type="submit" class="btn btn-default btn-group-lg" name="search" value="Ara">

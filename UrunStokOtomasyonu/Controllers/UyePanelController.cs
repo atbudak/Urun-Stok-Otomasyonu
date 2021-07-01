@@ -10,7 +10,7 @@ using UrunStokOtomasyonu.Models.EntityFramework;
 
 namespace UrunStokOtomasyonu.Controllers
 {
-    [Authorize(Roles ="A,U")]
+    [Authorize(Roles = "A,U")]
     public class UyePanelController : Controller
     {
         DBUrunStokEntities db = new DBUrunStokEntities();
@@ -94,6 +94,7 @@ namespace UrunStokOtomasyonu.Controllers
             var detay = db.TBLDUYURU.Find(id);
             return View("DuyuruDetay", detay);
         }
+
         public ActionResult SatisListesi(string search, int page = 1)
         {
             var uye = (string)Session["Kullanici"];
@@ -190,7 +191,7 @@ namespace UrunStokOtomasyonu.Controllers
                         TempData["s0"] = "Stok sizin talep ettiğiniz miktarı karşılamadığı için kaydedilemedi.İstek Satış aşamasını seçerek adminden talep edebilirsiniz.";
                         return RedirectToAction("SatisEkle");
                     }
-                    
+
                 }
                 else
                 {
@@ -212,7 +213,7 @@ namespace UrunStokOtomasyonu.Controllers
                     TempData["s0"] = "Stok bulunmadığı durumda İstek seçeneğini seçmelisiniz.";
                     return RedirectToAction("SatisEkle");
                 }
-                
+
             }
 
         }
@@ -250,7 +251,7 @@ namespace UrunStokOtomasyonu.Controllers
                 {
                     if (t.ACTION == "1")
                     {
-                        sts.URUNMIKTARI = t.URUNMIKTARI;                       
+                        sts.URUNMIKTARI = t.URUNMIKTARI;
                     }
                     else
                     {
@@ -260,14 +261,14 @@ namespace UrunStokOtomasyonu.Controllers
                 }
                 else
                 {
-                    sts.URUNMIKTARI = t.URUNMIKTARI;                   
+                    sts.URUNMIKTARI = t.URUNMIKTARI;
                 }
             }
             else
             {
                 if (t.ACTION == "1")
                 {
-                    sts.URUNMIKTARI = t.URUNMIKTARI;                    
+                    sts.URUNMIKTARI = t.URUNMIKTARI;
                 }
                 else
                 {
@@ -295,6 +296,34 @@ namespace UrunStokOtomasyonu.Controllers
             db.SaveChanges();
             return RedirectToAction("SatisListesi");
         }
+
+
+        [HttpGet]
+        public ActionResult UcretHesapla()
+        {
+            List<SelectListItem> urun = (from x in db.TBLURUN.Where(x => x.DURUM == true).ToList()
+                                         select new SelectListItem { Text = x.AD, Value = x.ID.ToString() }).ToList();
+            ViewBag.urn1 = urun;
+
+            TBLSATISHAREKET k = new TBLSATISHAREKET();
+            return View(k);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UcretHesapla(TBLSATISHAREKET t)
+        {
+            var uye = (string)Session["Kullanici"];
+            var deger = db.TBLUYE.FirstOrDefault(x => x.KULLANICIADI == uye);
+
+            var urn = db.TBLURUN.Where(x => x.ID == t.TBLURUN.ID).FirstOrDefault();
+
+            var d9 = db.TBLSATISHAREKET.Where(x => x.UYE == deger.ID && x.ACTION == "4" && x.URUN == urn.ID).Sum(x => x.ISLEMTUTARI);
+            TempData["ucret"] = d9;
+
+            return RedirectToAction("UcretHesapla");
+        }
+
 
 
     }

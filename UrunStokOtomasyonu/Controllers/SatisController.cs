@@ -44,6 +44,7 @@ namespace UrunStokOtomasyonu.Controllers
             }
             return View(urun.Where(x => x.DURUM == true && x.ACTION == "1").ToList().OrderByDescending(x => x.SIPARISTARIHI).ToPagedList(page, 10));
         }
+
         [HttpGet]
         public ActionResult SatisEkle()
         {

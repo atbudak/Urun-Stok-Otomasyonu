@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_UyePanelLayout.cshtml";
     var kullanici = Session["ad"].ToString() + " " + Session["soyad"].ToString();
     var gelenmesaj = TempData["s0"];
+    DateTime tarih = DateTime.Now.Date;
 }
 
 
@@ -33,11 +34,11 @@
         </div>
         <div class="flex_col_1">
             <label style="margin-bottom:10px;">Sipariş Tarihi</label>
-            <input type="text" class="form-control mt-1 mb-3" name="SIPARISTARIHI" value="@DateTime.Now.ToShortDateString()" readonly="readonly" />
+            <input type="text" class="form-control mt-1 mb-3" name="SIPARISTARIHI" value="@tarih.ToString("MM.dd.yyyy")" readonly="readonly" />
         </div>
         <div class="flex_col_1">
             <label style="margin-bottom:10px;">Teslim Tarihi</label>
-            @Html.TextBoxFor(x => x.TESLIMTARIHI, new { @class = "form-control mt-1 mb-3", type = "date" })
+            @Html.TextBoxFor(x => x.TESLIMTARIHI, new { @class = "form-control mt-1 mb-3", type = "date"})
         </div>
         <div class="flex_col_1">
             <label style="margin-bottom:10px;">Ürün Miktari (kg)</label>
