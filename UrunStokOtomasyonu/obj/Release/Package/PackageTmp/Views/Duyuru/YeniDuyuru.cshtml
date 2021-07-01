@@ -1,0 +1,41 @@
+﻿@model UrunStokOtomasyonu.Models.EntityFramework.TBLDUYURU
+@{
+    ViewBag.Title = "YeniDuyuru";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="mw-500 text-center bg-transparent mb-4">
+    <h1 class="sketchy text-center">Yeni Duyuru</h1>
+</div>
+<div class="flex_container" style="max-width:1224px;">
+    <div class="flex_col_0">
+        <a href="/Duyuru/DuyuruListesi" class="btn btn-info float-right" style="margin-bottom:15px">Duyurular</a>
+    </div>
+</div>
+@using (Html.BeginForm("YeniDuyuru", "Duyuru", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="flex_container" style="max-width:1300px">
+        @Html.HiddenFor(x => x.ID)
+        <div class="flex_col_1">
+            @Html.Label("Konusu")
+            @Html.TextBoxFor(x => x.KONU, new { @class = "form-control mt-1 mb-3" })
+            @Html.ValidationMessageFor(x => x.KONU, "", new { @style = "color:red;opacity:.7" })
+        </div><div class="flex_col_1">
+            @Html.Label("Tarihi")
+            @Html.TextBoxFor(x => x.TARIH, new { @class = "form-control mt-1 mb-3", type = "date" })
+            @Html.ValidationMessageFor(x => x.TARIH, "", new { @style = "color:red;opacity:.7" })
+        </div>
+        <div class="flex_col_0">
+            @Html.Label("Mesaj")
+            @Html.TextAreaFor(x => x.ICERIK, new { @class = "form-control mt-1 mb-3" })
+            @Html.ValidationMessageFor(x => x.ICERIK, "", new { @style = "color:red;opacity:.7" })
+            <button class="btn btn-info float-right">Yayımla</button>
+        </div>
+
+    </div>
+
+
+
+}
+

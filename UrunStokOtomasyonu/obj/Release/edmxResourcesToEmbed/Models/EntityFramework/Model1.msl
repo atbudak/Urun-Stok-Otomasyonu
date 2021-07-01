@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBUrunStokModelStoreContainer" CdmEntityContainer="DBUrunStokEntities">
+    <EntitySetMapping Name="TBLDUYURU">
+      <EntityTypeMapping TypeName="DBUrunStokModel.TBLDUYURU">
+        <MappingFragment StoreEntitySet="TBLDUYURU">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="KONU" ColumnName="KONU" />
+          <ScalarProperty Name="ICERIK" ColumnName="ICERIK" />
+          <ScalarProperty Name="TARIH" ColumnName="TARIH" />
+          <ScalarProperty Name="DURUM" ColumnName="DURUM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLSATISHAREKET">
+      <EntityTypeMapping TypeName="DBUrunStokModel.TBLSATISHAREKET">
+        <MappingFragment StoreEntitySet="TBLSATISHAREKET">
+          <ScalarProperty Name="ACTION" ColumnName="ACTION" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="URUN" ColumnName="URUN" />
+          <ScalarProperty Name="UYE" ColumnName="UYE" />
+          <ScalarProperty Name="SIPARISTARIHI" ColumnName="SIPARISTARIHI" />
+          <ScalarProperty Name="TESLIMTARIHI" ColumnName="TESLIMTARIHI" />
+          <ScalarProperty Name="URUNMIKTARI" ColumnName="URUNMIKTARI" />
+          <ScalarProperty Name="ISLEMTUTARI" ColumnName="ISLEMTUTARI" />
+          <ScalarProperty Name="MUSTERI" ColumnName="MUSTERI" />
+          <ScalarProperty Name="MUSTERIDETAY" ColumnName="MUSTERIDETAY" />
+          <ScalarProperty Name="DURUM" ColumnName="DURUM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLURUN">
+      <EntityTypeMapping TypeName="DBUrunStokModel.TBLURUN">
+        <MappingFragment StoreEntitySet="TBLURUN">
+          <ScalarProperty Name="STOK" ColumnName="STOK" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="AD" ColumnName="AD" />
+          <ScalarProperty Name="FIYAT" ColumnName="FIYAT" />
+          <ScalarProperty Name="DETAY" ColumnName="DETAY" />
+          <ScalarProperty Name="DURUM" ColumnName="DURUM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLUYE">
+      <EntityTypeMapping TypeName="DBUrunStokModel.TBLUYE">
+        <MappingFragment StoreEntitySet="TBLUYE">
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="AD" ColumnName="AD" />
+          <ScalarProperty Name="SOYAD" ColumnName="SOYAD" />
+          <ScalarProperty Name="KULLANICIADI" ColumnName="KULLANICIADI" />
+          <ScalarProperty Name="SIFRE" ColumnName="SIFRE" />
+          <ScalarProperty Name="DURUM" ColumnName="DURUM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="EnCokSatilanUrun" FunctionName="DBUrunStokModel.Store.EnCokSatilanUrun" />
+    <FunctionImportMapping FunctionImportName="TukenenBademKilosu" FunctionName="DBUrunStokModel.Store.TukenenBademKilosu" />
+    <FunctionImportMapping FunctionImportName="TukenenBiberKilosu" FunctionName="DBUrunStokModel.Store.TukenenBiberKilosu" />
+    <FunctionImportMapping FunctionImportName="TukenenFistikKilosu" FunctionName="DBUrunStokModel.Store.TukenenFistikKilosu" />
+    <FunctionImportMapping FunctionImportName="EnCokSatanUye" FunctionName="DBUrunStokModel.Store.EnCokSatanUye" />
+  </EntityContainerMapping>
+</Mapping>

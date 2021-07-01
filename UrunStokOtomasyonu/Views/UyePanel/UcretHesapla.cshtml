@@ -1,0 +1,41 @@
+﻿@model UrunStokOtomasyonu.Models.EntityFramework.TBLSATISHAREKET
+
+@{
+    ViewBag.Title = "UcretHesapla";
+    Layout = "~/Views/Shared/_UyePanelLayout.cshtml";
+    var ucret = TempData["Ucret"] + "TL";
+}
+
+
+<div class="mw-500 text-center bg-transparent mb-4 mt-5">
+    <h1 class="sketchy text-center">Ücret Hesapla</h1>
+</div>
+
+<div class="pull-right float-right mt-5">
+    <a href="/UyePanel/SatisEkle" class="btn btn-success pull-right" style="margin-bottom:15px">Yeni Satış Ekle</a>
+    <a href="/UyePanel/TamamlananSatislar" class="btn btn-info pull-right mr-3" style="margin-bottom:15px">Tamamlanmış Satışlar</a>
+    <a href="/UyePanel/SatisListesi" class="btn mr-3 text-white" style="margin-bottom:15px; background-color:#facd33">Satış Listesi</a>
+</div>
+
+@using (Html.BeginForm("UcretHesapla", "UyePanel", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="flex_container p-5" style="max-width:1300px;">
+
+        <div class="flex_col_2">
+            @Html.Label("Ürün")
+            @Html.DropDownListFor(k => k.TBLURUN.ID, (List<SelectListItem>)ViewBag.urn1, new { @class = "form-control mt-1 mb-3" })
+        </div>
+        <div class="flex_col_2">
+            @Html.Label("Teslim Tarihi")
+            @Html.TextBoxFor(x => x.TESLIMTARIHI, new { @class = "form-control mt-1 mb-3", type = "date" })
+        </div>
+        <div class="flex_col_2">
+            @Html.Label("Alınan Ücret")
+            <span class="form-control mt-1 mb-3 disabled">@ucret</span>
+        </div>
+
+        <div class="flex_col_0"><button class="btn btn-info mt-2 pl-4 pr-4 float-lg-right">Sorgula</button></div>
+
+     </div>
+}

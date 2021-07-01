@@ -1,0 +1,139 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<script type="application/x-javascript">
+    addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+           function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //custom-theme -->
+<link href="~/Content/AdminKartlar/component.css" rel="stylesheet" media="all"/>
+<link href="~/Content/AdminKartlar/style.css" rel="stylesheet" media="all"/>
+<link href="~/Content/AdminKartlar/style_grid.css" rel="stylesheet" media="all"/>
+<!-- //font-awesome-icons -->
+<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
+
+<!-- banner -->
+<div class="clearfix"></div>
+<div class="flex_container">
+    <ul class="ca-menu">
+        <li title="Satılmakta olan ürün çeşitlerini gösterir.">
+            <a href="#">
+                <i class="fa fa-book" aria-hidden="true"></i>
+                <div class="ca-content">
+                    <h4 class="ca-main">@ViewBag.d1</h4>
+                    <h3 class="ca-sub"> Ürün Sayımız</h3>
+                </div>
+            </a>
+        </li>
+        <li title="Sisteme kayıtlı üye sayısını gösterir.">
+            <a href="#">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <div class="ca-content">
+                    <h4 class="ca-main one">@ViewBag.d2</h4>
+                    <h3 class="ca-sub one">Üye Sayımız</h3>
+                </div>
+            </a>
+        </li>
+        <li title="Şimdiye kadar yollanılan duyuru sayısını gösterir.">
+            <a href="#">
+                <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+                <div class="ca-content">
+                    <h4 class="ca-main two">@ViewBag.d3</h4>
+                    <h3 class="ca-sub two">Duyuru Sayımız</h3>
+                </div>
+            </a>
+        </li>
+        <li title="Her bir üye tarafından yapılan satış sayılarının toplamını gösterir.">
+            <a href="#">
+                <i class="fa fa-contao" aria-hidden="true"></i>
+                <div class="ca-content">
+                    <h4 class="ca-main three">@ViewBag.d4</h4>
+                    <h3 class="ca-sub three">Bütün Siparişlerin Sayısı</h3>
+                </div>
+            </a>
+        </li>
+
+    </ul>
+
+    <ul class="ca-menu">
+        <li title="Üyeler tarafından istekte bulunan siparişlerin sayısını gösterir.Bkz. Siparişler">
+            <a href="#">
+                <i class="fa fa-list" aria-hidden="true"></i>
+                <div class="ca-content">
+                    <h4 class="ca-main">@ViewBag.d5</h4>
+                    <h3 class="ca-sub">Sipariş Sayımız</h3>
+                </div>
+            </a>
+        </li>
+        <li title="Müşteriye teslim edilmiş ya da iptal edilmiş siparişleri gösterir.">
+            <a href="#">
+                <i class="fa fa-suitcase" aria-hidden="true"></i>
+                <div class="ca-content">
+                    <h4 class="ca-main one">@ViewBag.d6</h4>
+                    <h3 class="ca-sub one">Tamamlanan Sipariş Sayımız</h3>
+                </div>
+            </a>
+        </li>
+        <li title="Üyeler tarafından istekte bulunan Antep Fıstığı siparişlerinin kilogramını gösterir.Bkz. Siparişler">
+            <a href="#">
+                <i class="fa fa-database" aria-hidden="true"></i>
+                <div class="ca-content">
+                    <h4 class="ca-main two">@ViewBag.d7</h4>
+                    <h3 class="ca-sub two">Sipariş Antep Fıstığı (Kg)</h3>
+                </div>
+            </a>
+        </li>
+
+        <li title="Üyeler tarafından istekte bulunan Badem siparişlerinin kilogramını gösterir.Bkz. Siparişler">
+            <a href="#">
+                <i class="fa fa-database" aria-hidden="true"></i>
+                <div class="ca-content">
+                    <h4 class="ca-main three">@ViewBag.d8</h4>
+                    <h3 class="ca-sub three">Sipariş Badem (Kg)</h3>
+                </div>
+            </a>
+        </li>
+
+    </ul>
+    <ul class="ca-menu">
+        <li title="Üyeler tarafından istekte bulunan Biber siparişlerinin kilogramını gösterir.Bkz. Siparişler">
+            <a href="#">
+                <i class="fa fa-database" aria-hidden="true"></i>
+                <div class="ca-content">
+                    <h4 class="ca-main">@ViewBag.d9</h4>
+                    <h3 class="ca-sub">Sipariş Biber (Kg)</h3>
+                </div>
+            </a>
+        </li>
+        <li title="Üyenin devam ettirdiği siparişlerin listesini gösterir.">
+            <a href="#">
+                <i class="fa fa-hand-grab-o" aria-hidden="true"></i>
+                <div class="ca-content">
+                    <h4 class="ca-main one">@ViewBag.d10</h4>
+                    <h3 class="ca-sub one">Devam Eden Siparişlerimiz</h3>
+                </div>
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class="fa fa-recycle" aria-hidden="true"></i>
+                <div class="ca-content">
+                    <h4 class="ca-main two">@ViewBag.d11</h4>
+                    <h3 class="ca-sub two">En Çok Satılan Ürün</h3>
+                </div>
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class="fa fa-bell-o" aria-hidden="true"></i>
+                <div class="ca-content">
+                    <h4 class="ca-main three">@ViewBag.d12</h4>
+                    <h3 class="ca-sub three">En Çok Satış Yapan Üye</h3>
+                </div>
+            </a>
+        </li>
+
+    </ul>
+</div>

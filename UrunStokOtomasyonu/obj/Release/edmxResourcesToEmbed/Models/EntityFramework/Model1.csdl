@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBUrunStokModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="TBLDUYURU">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KONU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ICERIK" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TARIH" Type="DateTime" Precision="3" />
+    <Property Name="DURUM" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="TBLSATISHAREKET">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="URUN" Type="Int32" />
+    <Property Name="UYE" Type="Int32" />
+    <Property Name="SIPARISTARIHI" Type="DateTime" Precision="3" />
+    <Property Name="TESLIMTARIHI" Type="DateTime" Precision="3" />
+    <Property Name="URUNMIKTARI" Type="Double" />
+    <Property Name="ISLEMTUTARI" Type="Double" />
+    <Property Name="MUSTERI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MUSTERIDETAY" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="DURUM" Type="Boolean" />
+    <NavigationProperty Name="TBLURUN" Relationship="Self.FK_TBLSATISHAREKET_TBLURUN" FromRole="TBLSATISHAREKET" ToRole="TBLURUN" />
+    <NavigationProperty Name="TBLUYE" Relationship="Self.FK_TBLSATISHAREKET_TBLUYE" FromRole="TBLSATISHAREKET" ToRole="TBLUYE" />
+    <Property Name="ACTION" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TBLURUN">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FIYAT" Type="Double" />
+    <Property Name="DETAY" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DURUM" Type="Boolean" />
+    <NavigationProperty Name="TBLSATISHAREKET" Relationship="Self.FK_TBLSATISHAREKET_TBLURUN" FromRole="TBLURUN" ToRole="TBLSATISHAREKET" />
+    <Property Name="STOK" Type="Double" />
+  </EntityType>
+  <EntityType Name="TBLUYE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SOYAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="KULLANICIADI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="SIFRE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DURUM" Type="Boolean" />
+    <NavigationProperty Name="TBLSATISHAREKET" Relationship="Self.FK_TBLSATISHAREKET_TBLUYE" FromRole="TBLUYE" ToRole="TBLSATISHAREKET" />
+    <Property Name="Role" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_TBLSATISHAREKET_TBLURUN">
+    <End Role="TBLURUN" Type="Self.TBLURUN" Multiplicity="0..1" />
+    <End Role="TBLSATISHAREKET" Type="Self.TBLSATISHAREKET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLURUN">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TBLSATISHAREKET">
+        <PropertyRef Name="URUN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLSATISHAREKET_TBLUYE">
+    <End Role="TBLUYE" Type="Self.TBLUYE" Multiplicity="0..1" />
+    <End Role="TBLSATISHAREKET" Type="Self.TBLSATISHAREKET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLUYE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TBLSATISHAREKET">
+        <PropertyRef Name="UYE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBUrunStokEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TBLDUYURU" EntityType="Self.TBLDUYURU" />
+    <EntitySet Name="TBLSATISHAREKET" EntityType="Self.TBLSATISHAREKET" />
+    <EntitySet Name="TBLURUN" EntityType="Self.TBLURUN" />
+    <EntitySet Name="TBLUYE" EntityType="Self.TBLUYE" />
+    <AssociationSet Name="FK_TBLSATISHAREKET_TBLURUN" Association="Self.FK_TBLSATISHAREKET_TBLURUN">
+      <End Role="TBLURUN" EntitySet="TBLURUN" />
+      <End Role="TBLSATISHAREKET" EntitySet="TBLSATISHAREKET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLSATISHAREKET_TBLUYE" Association="Self.FK_TBLSATISHAREKET_TBLUYE">
+      <End Role="TBLUYE" EntitySet="TBLUYE" />
+      <End Role="TBLSATISHAREKET" EntitySet="TBLSATISHAREKET" />
+    </AssociationSet>
+    <FunctionImport Name="EnCokSatilanUrun" ReturnType="Collection(String)" />
+    <FunctionImport Name="EnCokSatisYapanUye" />
+    <FunctionImport Name="TukenenBademKilosu" ReturnType="Collection(Double)" />
+    <FunctionImport Name="TukenenBiberKilosu" ReturnType="Collection(Double)" />
+    <FunctionImport Name="TukenenFistikKilosu" ReturnType="Collection(Double)" />
+    <FunctionImport Name="EnCokSatanUye" ReturnType="Collection(String)" />
+  </EntityContainer>
+</Schema>

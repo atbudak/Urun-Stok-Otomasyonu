@@ -1,0 +1,54 @@
+﻿@model UrunStokOtomasyonu.Models.EntityFramework.TBLUYE
+@{
+    ViewBag.Title = "Profil";
+    Layout = "~/Views/Shared/_UyePanelLayout.cshtml";
+}
+
+<div class="mw-500 text-center bg-transparent mt-5">
+    <h1 class="sketchy text-center">Üye Profil Bilgileri</h1>
+</div>
+
+<div class="col-lg-8 m-auto pt-lg-5">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Bilgilerim</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        @using (Html.BeginForm("ProfilGuncelle", "UyePanel", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Ad</label>
+                    @Html.TextBoxFor(x => x.AD, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.AD, "", new { @style = "opacity=.7;color:#000000;" })
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Soyad</label>
+                    @Html.TextBoxFor(x => x.SOYAD, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.AD, "", new { @style = "opacity=.7;color:#000000;" })
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Kullanıcı Adı</label>
+                    @Html.TextBoxFor(x => x.KULLANICIADI, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.AD, "", new { @style = "opacity=.7;color:#000000;" })
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Şifre</label>
+                    @Html.TextBoxFor(x => x.SIFRE, new { @class = "form-control", Type = "password" })
+                    @Html.ValidationMessageFor(x => x.AD, "", new { @style = "opacity=.7;color:#000000;" })
+                </div>
+            </div>
+            <!-- /.card-body -->
+            <div class="form-group" title="Bilgileri güncelledikten sonra giriş sayfasına yönlendirileceksiniz.">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24px" height="24px" class="ml-4"><path fill="#607d8b" d="m 256 0 c -141.164 0 -256 114.836 -256 256 s 114.836 256 256 256 s 256 -114.836 256 -256 s -114.836 -256 -256 -256 Z m 0 0" /><g fill="#fafafa"><path d="m 277.332 128 c 0 11.7813 -9.55078 21.332 -21.332 21.332 s -21.332 -9.55078 -21.332 -21.332 s 9.55078 -21.332 21.332 -21.332 s 21.332 9.55078 21.332 21.332 Z m 0 0" /><path d="m 304 405.332 h -96 c -11.7969 0 -21.332 -9.55469 -21.332 -21.332 s 9.53516 -21.332 21.332 -21.332 h 26.668 v -128 h -16 c -11.7969 0 -21.3359 -9.55859 -21.3359 -21.3359 c 0 -11.7734 9.53906 -21.332 21.3359 -21.332 h 37.332 c 11.7969 0 21.332 9.55859 21.332 21.332 v 149.336 h 26.668 c 11.7969 0 21.332 9.55469 21.332 21.332 s -9.53516 21.332 -21.332 21.332 Z m 0 0" /></g></svg>
+            </div>
+            <div class="card-footer">
+
+                <button type="submit" class="btn btn-primary">Güncelle</button>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,49 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<UrunStokOtomasyonu.Models.EntityFramework.TBLDUYURU>
+
+@{
+    ViewBag.Title = "Duyurular";
+    Layout = "~/Views/Shared/_UyePanelLayout.cshtml";
+}
+
+<div class="mw-500 text-center bg-transparent mb-5 mt-5">
+    <h1 class="sketchy text-center">Duyurular</h1>
+</div>
+<br /><br />
+@using (@Html.BeginForm("Duyurular", "UyePanel", FormMethod.Get))
+{
+    <div class="Search-Container col-lg-4 col-lg-offset-0 mt-5 mb-3" style="display:flex">
+        @Html.TextBox("search", "", new { placeholder = "Konuya göre ara", @class = "form-control", style = "margin-right:5px" })
+        <input type="submit" class="btn btn-default btn-group-lg" name="search" value="Ara">
+    </div>
+}
+
+<div class="overflow-auto col-lg-12">
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Duyuru No</th>
+                <th scope="col">Konu</th>
+                <th scope="col">Tarih</th>
+                <th scope="col">Detay</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in Model)
+            {
+                <tr>
+                    <td>@x.ID</td>
+                    <td>@x.KONU</td>
+                    <td>@Convert.ToDateTime(x.TARIH).ToString("dd.MM.yyyy")</td>
+                    <td class="text-center"><a href="/UyePanel/DuyuruDetay/@x.ID" class="btn btn-primary text-white">Detay</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <span class="text-white">
+        @Html.PagedListPager((IPagedList)Model, page => Url.Action("DuyuruListesi", new { page }))
+    </span>
+</div>
+
